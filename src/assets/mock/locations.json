@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "name": "imPULSIV Freitzeitcenter",
+    "city": "Weil am Rhein",
+    "indoor": true
+  },
+  {
+    "id": 2,
+    "name": "Pelzli",
+    "city": "Dornach",
+    "indoor": false
+  }
+
+]

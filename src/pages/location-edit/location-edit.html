@@ -1,0 +1,31 @@
+<ion-header>
+  <header [title]="location.name"></header>
+</ion-header>
+
+
+<ion-content padding>
+<form [formGroup]="editForm">
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input formControlName="name" [(ngModel)]="location.name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Stadt/Ort</ion-label>
+      <ion-input formControlName="city" [(ngModel)]="location.city"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list formControlName="indoor" radio-group [(ngModel)]="location.indoor">
+    <ion-item>
+      <ion-label>Indoor (Halle)</ion-label>
+      <ion-radio value="true" checked></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Outdoor</ion-label>
+      <ion-radio value="false"></ion-radio>
+    </ion-item>
+  </ion-list>
+</form>
+</ion-content>
