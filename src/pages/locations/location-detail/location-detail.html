@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ location.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h1>
+    <ion-icon [style.display]="location.indoor ? 'visible' : 'none'" name="home" item-left></ion-icon>
+    {{ location.name }}
+    <span class="flag-icon flag-icon-de"></span>
+  </h1>
+
+  <h3>{{ location.city }}</h3>
+
+  <div padding-top>
+    <ion-item no-lines>
+      Routen <ion-badge color="primary" item-right>0{{ location.routeCount }}</ion-badge>
+    </ion-item>
+  </div>
+
+  <button ion-button color="secondary" (click)="openEditModal()">
+    Bearbeiten
+  </button>
+
+
+</ion-content>

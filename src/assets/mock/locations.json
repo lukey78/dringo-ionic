@@ -3,12 +3,14 @@
     "id": 1,
     "name": "imPULSIV Freitzeitcenter",
     "city": "Weil am Rhein",
+    "country": "de",
     "indoor": true
   },
   {
     "id": 2,
     "name": "Pelzli",
     "city": "Dornach",
+    "country": "ch",
     "indoor": false
   }
 

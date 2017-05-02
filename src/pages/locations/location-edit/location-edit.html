@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ location.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="editForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input formControlName="name" [(ngModel)]="location.name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Stadt/Ort</ion-label>
+        <ion-input formControlName="city" [(ngModel)]="location.city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Land</ion-label>
+        <ion-select formControlName="country" [(ngModel)]="location.country">
+          <ion-option value="de">Deutschland</ion-option>
+          <ion-option value="ch">Schweiz</ion-option>
+          <ion-option value="fr">Frankreich</ion-option>
+          <ion-option value="it">Italien</ion-option>
+          <ion-option value="at">Österreich</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Indoor/Outdoor</ion-label>
+        <ion-select formControlName="indoor" [(ngModel)]="location.indoor">
+          <ion-option value="true">Indoor (Halle)</ion-option>
+          <ion-option value="false">Outdoor (Fels)</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+  </form>
+
+  <button ion-button (click)="save()">
+    Speichern
+  </button>
+</ion-content>

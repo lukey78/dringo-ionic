@@ -7,36 +7,32 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
 
+import { LocationsModule } from '../pages/locations/locations.module';
 import { LocationsPage } from '../pages/locations/locations';
-import { LocationEditPage } from '../pages/location-edit/location-edit';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { LocationsProvider } from '../providers/locations';
 
-import { Header } from '../components/header/header';
 
 @NgModule({
   declarations: [
     MyApp,
-    Header,
-    LocationsPage,
-    LocationEditPage,
     HomePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    LocationsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LocationsPage,
-    LocationEditPage,
     HomePage,
+    LocationsPage,
     TabsPage
   ],
   providers: [

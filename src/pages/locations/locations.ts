@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations';
 import { Location } from '../../models/location';
 
-import { LocationEditPage } from '../location-edit/location-edit';
+import { LocationDetailPage } from './location-detail/location-detail';
 
 @IonicPage()
 @Component({
@@ -22,7 +22,7 @@ export class LocationsPage {
   }
   
   edit(location: Location) {
-    this.navCtrl.push(LocationEditPage, { location });
+    this.navCtrl.push(LocationDetailPage, { location });
   }
 
   ionViewDidLoad() {
