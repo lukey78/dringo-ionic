@@ -40,7 +40,20 @@
     </ion-list>
   </form>
 
-  <button ion-button (click)="save()">
-    Speichern
-  </button>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="secondary">
+    <ion-buttons start>
+      <button ion-button (click)="save()">
+        Speichern
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="cancel()">
+        Abbrechen
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

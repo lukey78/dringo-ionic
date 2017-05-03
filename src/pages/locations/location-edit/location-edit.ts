@@ -33,6 +33,10 @@ export class LocationEditPage {
     }
   }
 
+  cancel() {
+    this.viewCtrl.dismiss();
+  }
+
   ionViewCanLeave() {
     this.submitAttempt = true;
     return this.editForm.valid;
