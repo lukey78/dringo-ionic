@@ -9,10 +9,12 @@
   <h1>
     <ion-icon [style.display]="location.indoor ? 'visible' : 'none'" name="home" item-left></ion-icon>
     {{ location.name }}
-    <span class="flag-icon flag-icon-de"></span>
   </h1>
 
-  <h3>{{ location.city }}</h3>
+  <h3>
+    <span class="flag-icon flag-icon-{{ location.country }}"></span>
+    {{ location.city }}
+  </h3>
 
   <div padding-top>
     <ion-item no-lines>
