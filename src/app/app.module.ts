@@ -8,6 +8,11 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Http } from '@angular/http';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+//import * as firebase from 'firebase/app';
+
 import { MyApp } from './app.component';
 
 import { LocationsModule } from '../pages/locations/locations.module';
@@ -19,8 +24,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LocationsProvider } from '../providers/locations';
 
 export function createTranslateLoader(http: Http) {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
+
+// AF2 Settings
+export const firebaseConfig = {
+  apiKey: "AIzaSyDFqR24vjRDCTg5nFk7ia9L3oefSUpkWXM",
+  authDomain: "dringo-f9348.firebaseapp.com",
+  databaseURL: "https://dringo-f9348.firebaseio.com",
+  projectId: "dringo-f9348",
+  storageBucket: "dringo-f9348.appspot.com",
+  messagingSenderId: "511139085903"
+};
 
 @NgModule({
   declarations: [
@@ -33,6 +48,9 @@ export function createTranslateLoader(http: Http) {
     HttpModule,
     LocationsModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

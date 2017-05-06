@@ -12,8 +12,8 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$background-color: #022328;
-$text-color: #dddddd;
+//$background-color: #022328;
+//$text-color: #dddddd;
 
 
 
@@ -34,11 +34,11 @@ $text-color: #dddddd;
 //);
 
 $colors: (
-        primary:    #229922,
-        secondary:  #125F63,
-        danger:     #f53d3d,
-        light:      #f4f4f4,
-        dark:       #222
+        primary:    #1f8464,
+        secondary:  #3891a6,
+        danger:     #db5461,
+        light:      #fde74c,
+        dark:       #23395b
 );
 
 
@@ -69,7 +69,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.dark";
 
 
 // Ionicons

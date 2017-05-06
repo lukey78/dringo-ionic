@@ -44,16 +44,25 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="secondary">
-    <ion-buttons start>
-      <button ion-button (click)="save()">
-        Speichern
-      </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button ion-button (click)="cancel()">
-        Abbrechen
-      </button>
-    </ion-buttons>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-5>
+          <button color="primary" block ion-button full (click)="save()">
+            Speichern
+          </button>
+        </ion-col>
+        <ion-col col-5>
+          <button color="secondary" ion-button full (click)="cancel()">
+            Abbrechen
+          </button>
+        </ion-col>
+        <ion-col col-2>
+          <button color="danger" ion-button icon-only full (click)="delete()">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>

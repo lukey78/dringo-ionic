@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
-import { Location } from "../../../models/location";
 import { LocationEditPage } from "../location-edit/location-edit";
+import { LocationsProvider } from '../../../providers/locations';
+import { Location } from '../../../models/location';
 
 
 @IonicPage()
@@ -14,12 +15,19 @@ export class LocationDetailPage {
 
   location: Location;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
-    this.location = navParams.get('location');
+  constructor(public navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController, private locationProvider: LocationsProvider) {
+    locationProvider.getItem(navParams.get('id')).subscribe(item => {
+      this.location = item
+    });
   }
 
   openEditModal() {
-    let editModal = this.modalCtrl.create(LocationEditPage, { "location": this.location });
+    let editModal = this.modalCtrl.create(LocationEditPage, { "id": this.location.id });
+    editModal.onDidDismiss(data => {
+      if (data && 'delete' in data && data.delete === true) {
+        this.navCtrl.popToRoot();
+      }
+    });
     editModal.present();
   }
 

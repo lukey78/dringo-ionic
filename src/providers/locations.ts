@@ -1,23 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
-import { Parse } from 'parse';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Location } from '../models/location';
 
 @Injectable()
 export class LocationsProvider {
 
-  constructor(public http: Http) {
+  items: FirebaseListObservable<any>;
+
+  constructor(public http: Http, public db: AngularFireDatabase) {
     console.log('Hello Locations Provider');
-    Parse.serverURL = 'http://parse.parse.044adf9d.svc.dockerapp.io:1337/parse'
-    Parse.initialize("dringo893278239823747");
+    this.items = this.db.list('/locations');
   }
 
-  load(): Observable<Location[]> {
-    return this.http.get('assets/mock/locations.json')
-        .map(res => <Location[]>res.json());
+  getItems(): Observable<Location[]> {
+    return this.items.map(Location.fromJsonList);
   }
 
+  getItem(key: string): Observable<Location> {
+    return this.db.object('/locations/' + key).map(Location.fromJson);
+  }
+
+  addItem(item: Location) {
+    this.items.push(item);
+  }
+
+  updateItem(key: string, item: Location) {
+    this.items.update(key, item);
+  }
+
+  deleteItem(key: string) {
+    this.items.remove(key);
+  }
+
+  deleteEverything() {
+    this.items.remove();
+  }
 }

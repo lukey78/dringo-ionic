@@ -5,6 +5,7 @@ import { LocationsProvider } from '../../providers/locations';
 import { Location } from '../../models/location';
 
 import { LocationDetailPage } from './location-detail/location-detail';
+import { Observable } from "rxjs/Observable";
 
 @IonicPage()
 @Component({
@@ -13,16 +14,14 @@ import { LocationDetailPage } from './location-detail/location-detail';
 })
 export class LocationsPage {
 
-  locations: Location[];
+  locations: Observable<Location[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private locationsProvider: LocationsProvider) {
-    locationsProvider.load().subscribe(locations => {
-      this.locations = locations;
-    })
+  constructor(private navCtrl: NavController, public navParams: NavParams, private locationsProvider: LocationsProvider) {
+    this.locations = locationsProvider.getItems();
   }
   
   edit(location: Location) {
-    this.navCtrl.push(LocationDetailPage, { location });
+    this.navCtrl.push(LocationDetailPage, { "id": location.id })
   }
 
   ionViewDidLoad() {
