@@ -1,5 +1,7 @@
 export class Location {
 
+    private nameCanonical: string;
+
 
     constructor(
         public id: string,
@@ -9,6 +11,7 @@ export class Location {
         public indoor: boolean,
         public routeCount: number
     ) {
+        this.nameCanonical = name.toLocaleLowerCase();
     }
 
     static fromForm(data) {

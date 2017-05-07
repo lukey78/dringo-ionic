@@ -13,7 +13,11 @@ export class LocationsProvider {
 
   constructor(public http: Http, public db: AngularFireDatabase) {
     console.log('Hello Locations Provider');
-    this.items = this.db.list('/locations');
+    this.items = this.db.list('/locations', {
+      query: {
+        orderByChild: 'nameCanonical'
+      }
+    });
   }
 
   getItems(): Observable<Location[]> {
