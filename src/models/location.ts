@@ -11,8 +11,11 @@ export class Location {
     ) {
     }
 
+    static fromForm(data) {
+        return new Location(null, data.name, data.city, data.country, data.indoor == "true", 0);
+    }
+
     public updateFromForm(data) {
-        this.id = data.id;
         this.name = data.name;
         this.city = data.city;
         this.country = data.country;

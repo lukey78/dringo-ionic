@@ -34,8 +34,4 @@ export class LocationDetailPage {
     editModal.present();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LocationDetail');
-  }
-
 }

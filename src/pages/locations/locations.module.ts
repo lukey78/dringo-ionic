@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { LocationsPage } from './locations';
 
+import { LocationNewModule } from './location-new/location-new.module';
 import { LocationEditModule } from './location-edit/location-edit.module';
 import { LocationDetailModule } from './location-detail/location-detail.module';
 
@@ -12,6 +13,7 @@ import { LocationDetailModule } from './location-detail/location-detail.module';
     LocationsPage
   ],
   imports: [
+    LocationNewModule,
     LocationEditModule,
     LocationDetailModule,
     IonicPageModule.forChild(LocationsPage),

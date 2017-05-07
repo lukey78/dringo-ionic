@@ -1,0 +1,15 @@
+.ios, .md {
+
+  page-location-new {
+
+    p {
+      font-size: 0.8em;
+    }
+
+    .invalid {
+      background-color: color($colors, danger);
+    }
+
+  }
+
+}

@@ -33,8 +33,9 @@
     },
     "location": {
         "title": "Orte",
+        "new": "Neuen Ort hinzufügen",
         "delete": {
-            "confirm": "Möchten Sie diesen Ort wirklich löschen?"
+            "confirm": "Möchtest du diesen Ort wirklich löschen?"
         },
         "field": {
             "name": "Name",
