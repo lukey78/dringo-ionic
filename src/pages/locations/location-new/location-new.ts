@@ -32,8 +32,8 @@ export class LocationNewPage {
     this.submitAttempt = true;
     if (this.editForm.valid) {
       let newLocation = Location.fromForm(this.editForm.value);
-      this.locationsProvider.addItem(newLocation);
-      this.viewCtrl.dismiss();
+      let id = this.locationsProvider.addItem(newLocation);
+      this.viewCtrl.dismiss({ "id": id });
     }
   }
 

@@ -11,7 +11,9 @@ export class Location {
         public indoor: boolean,
         public routeCount: number
     ) {
-        this.nameCanonical = name.toLocaleLowerCase();
+        if (this.name) {
+            this.nameCanonical = name.toLocaleLowerCase();
+        }
     }
 
     static fromForm(data) {

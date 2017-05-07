@@ -28,8 +28,8 @@ export class LocationsProvider {
     return this.db.object('/locations/' + key).map(Location.fromJson);
   }
 
-  addItem(item: Location) {
-    this.items.push(item);
+  addItem(item: Location): string {
+    return this.items.push(item).key;
   }
 
   updateItem(key: string, item: Location) {

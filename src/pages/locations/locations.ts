@@ -28,6 +28,12 @@ export class LocationsPage {
   add() {
     let editModal = this.modalCtrl.create(LocationNewPage, {});
     editModal.present();
+
+    editModal.onDidDismiss(data => {
+      if (data && 'id' in data) {
+        this.navCtrl.push(LocationDetailPage, { "id": data.id })
+      }
+    });
   }
 
   ionViewDidLoad() {
