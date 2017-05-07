@@ -21,7 +21,11 @@ import { LocationsPage } from '../pages/locations/locations';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { AuthService } from '../providers/auth-service';
 import { LocationsProvider } from '../providers/locations';
+import {LoginPage} from "../pages/login/login";
+import {LoginModule} from "../pages/login/login.module";
+import {HomeModule} from "../pages/home/home.module";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -40,13 +44,11 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    LocationsModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -57,11 +59,16 @@ export const firebaseConfig = {
         useFactory: (createTranslateLoader),
         deps: [Http]
       }
-    })
+    }),
+
+    LoginModule,
+    LocationsModule,
+    HomeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     HomePage,
     LocationsPage,
     TabsPage
@@ -69,6 +76,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     LocationsProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
