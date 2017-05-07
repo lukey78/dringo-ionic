@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>{{ location.name }}</ion-title>
+    <ion-title>{{ location?.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,31 +9,31 @@
   <form [formGroup]="editForm">
     <ion-list>
       <ion-item>
-        <ion-label floating>Name</ion-label>
-        <ion-input formControlName="name" [(ngModel)]="location.name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
+        <ion-label floating>{{ 'location.field.name' | translate }}</ion-label>
+        <ion-input formControlName="name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Stadt/Ort</ion-label>
-        <ion-input formControlName="city" [(ngModel)]="location.city"></ion-input>
+        <ion-label floating>{{ 'location.field.city' | translate }}</ion-label>
+        <ion-input formControlName="city"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Land</ion-label>
-        <ion-select formControlName="country" [(ngModel)]="location.country">
-          <ion-option value="de">Deutschland</ion-option>
-          <ion-option value="ch">Schweiz</ion-option>
-          <ion-option value="fr">Frankreich</ion-option>
-          <ion-option value="it">Italien</ion-option>
-          <ion-option value="at">Österreich</ion-option>
+        <ion-label floating>{{ 'location.field.country' | translate}}</ion-label>
+        <ion-select formControlName="country">
+          <ion-option value="de">{{ 'field.country.de' | translate }}</ion-option>
+          <ion-option value="ch">{{ 'field.country.ch' | translate }}</ion-option>
+          <ion-option value="fr">{{ 'field.country.fr' | translate }}</ion-option>
+          <ion-option value="it">{{ 'field.country.it' | translate }}</ion-option>
+          <ion-option value="at">{{ 'field.country.at' | translate }}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Indoor/Outdoor</ion-label>
-        <ion-select formControlName="indoor" [(ngModel)]="location.indoor">
-          <ion-option value="true">Indoor (Halle)</ion-option>
-          <ion-option value="false">Outdoor (Fels)</ion-option>
+        <ion-label floating>{{ 'location.field.indoor.title' | translate }}</ion-label>
+        <ion-select formControlName="indoor">
+          <ion-option value="true">{{ 'location.field.indoor.opt.indoor' | translate }}</ion-option>
+          <ion-option value="false">{{ 'location.field.indoor.opt.outdoor' | translate }}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -49,12 +49,12 @@
       <ion-row>
         <ion-col col-5>
           <button color="primary" block ion-button full (click)="save()">
-            Speichern
+            {{ 'controls.save' | translate }}
           </button>
         </ion-col>
         <ion-col col-5>
           <button color="secondary" ion-button full (click)="cancel()">
-            Abbrechen
+            {{ 'controls.cancel' | translate }}
           </button>
         </ion-col>
         <ion-col col-2>

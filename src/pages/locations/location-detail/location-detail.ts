@@ -16,7 +16,10 @@ export class LocationDetailPage {
   location: Location;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController, private locationProvider: LocationsProvider) {
-    locationProvider.getItem(navParams.get('id')).subscribe(item => {
+  }
+
+  ionViewDidEnter() {
+    this.locationProvider.getItem(this.navParams.get('id')).subscribe(item => {
       this.location = item
     });
   }

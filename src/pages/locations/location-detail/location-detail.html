@@ -1,34 +1,31 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>{{ location.name }}</ion-title>
+    <ion-title>{{ location?.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
   <h1>
-    <ion-icon [style.display]="location.indoor ? 'visible' : 'none'" name="home" item-left></ion-icon>
-    {{ location.name }}
+    <ion-icon [style.display]="location?.indoor === true ? 'inline' : 'none'" name="home" item-left></ion-icon>
+    {{ location?.name }}
   </h1>
 
   <h3>
-    <span class="flag-icon flag-icon-{{ location.country }}"></span>
-    {{ location.city }}
+    <span class="flag-icon flag-icon-{{ location?.country }}"></span>
+    {{ location?.city }}
   </h3>
 
   <div padding-top>
     <ion-item no-lines>
-      Routen <ion-badge color="primary" item-right>0{{ location.routeCount }}</ion-badge>
+      {{ 'location.field.routeCount' | translate }} <ion-badge color="primary" item-right>{{ location?.routeCount }}</ion-badge>
     </ion-item>
   </div>
-
-
-
 
 </ion-content>
 
 <ion-footer>
     <button  ion-button block color="primary" (click)="openEditModal()">
-      Bearbeiten
+      {{ 'controls.edit' | translate }}
     </button>
 </ion-footer>

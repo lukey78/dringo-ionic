@@ -11,6 +11,14 @@ export class Location {
     ) {
     }
 
+    public updateFromForm(data) {
+        this.id = data.id;
+        this.name = data.name;
+        this.city = data.city;
+        this.country = data.country;
+        this.indoor = data.indoor == "true";
+    }
+
     static fromJsonList(array): Location[] {
         return array.map(Location.fromJson);
     }

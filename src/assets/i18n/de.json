@@ -1,6 +1,7 @@
 {
     "controls": {
         "ok": "OK",
+        "edit": "Bearbeiten",
         "back": "Zurück",
         "cancel": "Abbrechen",
         "save": "Speichern",
@@ -15,6 +16,15 @@
         "greetingKnown": "Schön dass du zurück bist.",
         "letsgo": "Los geht's"
     },
+    "field": {
+        "country": {
+            "de": "Deutschland",
+            "ch": "Schweiz",
+            "fr": "Frankreich",
+            "it": "Italien",
+            "at": "Österreich"
+        }
+    },
     "dashboard": {
         "profile": "Profil",
         "chooseLocation": "Wähle einen Ort zum Klettern",
@@ -23,12 +33,20 @@
     },
     "location": {
         "title": "Orte",
-        "edit": "Ort bearbeiten",
-        "new": "Neuen Ort erstellen",
+        "delete": {
+            "confirm": "Möchten Sie diesen Ort wirklich löschen?"
+        },
         "field": {
             "name": "Name",
             "city": "Stadt/Region",
-            "indoor": "Halle?",
+            "country": "Land",
+            "indoor": {
+                "title": "Indoor/Outdoor",
+                "opt": {
+                    "indoor": "Indoor (Halle)",
+                    "outdoor": "Outdoor (Fels)"
+                }
+            },
             "routeCount": "Routen"
         }
     },

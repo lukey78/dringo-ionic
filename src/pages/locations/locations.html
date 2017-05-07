@@ -8,7 +8,7 @@
   <ion-list>
     <button ion-item *ngFor="let loc of locations | async" (click)="edit(loc)">
       <ion-icon name="navigate-outline" item-left></ion-icon>
-      <ion-icon [style.visibility]="loc.indoor ? 'visible' : 'hidden'" name="home" item-left></ion-icon>
+      <ion-icon [style.visibility]="loc.indoor === true ? 'visible' : 'hidden'" name="home" item-left></ion-icon>
       <h2>{{ loc.name }}</h2>
       <p>{{ loc.city }}</p>
     </button>
