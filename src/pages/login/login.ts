@@ -17,9 +17,12 @@ import { TabsPage } from "../tabs/tabs";
 export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService) {
-    if (auth.authenticated === true) {
-      this.navCtrl.setRoot(TabsPage);
-    }
+    // forward to TabsPage if we are already logged in
+    auth.getUserObservable().subscribe(user => {
+      if (this.navCtrl && user) {
+        this.navCtrl.setRoot(TabsPage);
+      }
+    });
   }
 
   loginAnon() {
@@ -45,10 +48,10 @@ export class LoginPage {
   }
 
   loginWithUsername() {
-    let me = this;
-    this.auth.signInWithUserAndPassword().then(function() {
-      me.navCtrl.setRoot(TabsPage);
-    });
+    //let me = this;
+    //this.auth.signInWithUserAndPassword().then(function() {
+    //  me.navCtrl.setRoot(TabsPage);
+    //});
   }
 
   ionViewDidLoad() {

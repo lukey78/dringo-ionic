@@ -6,14 +6,14 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
 
-  private currentUser: Observable<firebase.User>;
+  private userObservable: Observable<firebase.User>;
+  private currentUser: firebase.User;
 
   constructor(public afAuth: AngularFireAuth) {
-    this.currentUser = afAuth.authState;
-  }
-
-  get authenticated(): boolean {
-    return this.afAuth.auth.currentUser !== null;
+    this.userObservable = afAuth.authState;
+    this.userObservable.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   signInAnonymously(): firebase.Promise<any> {
@@ -29,20 +29,32 @@ export class AuthService {
   }
 
   signInWithUserAndPassword(): firebase.Promise<any> {
-    return this.afAuth.auth.signInWithPopup(new firebase.auth.EmailAuthProvider());
+    return this.afAuth.auth.signInWithEmailAndPassword("test@test.ch", "testpass");
   }
 
   signOut(): void {
     this.afAuth.auth.signOut();
   }
 
-  getCurrentUser(): Observable<firebase.User> {
+  getUserObservable(): Observable<firebase.User> {
+    return this.userObservable;
+  }
+
+  getCurrentUser(): firebase.User {
     return this.currentUser;
   }
 
+  getUserId(): string {
+    return this.currentUser ? this.currentUser.uid : "";
+  }
+
+  getUserName(): string {
+    return this.currentUser ? this.currentUser.displayName : "";
+  }
+
   getDisplayName(): string {
-    if (this.currentUser !== null) {
-      return 'bla';//this.currentUser.displayName;
+    if (this.userObservable !== null) {
+      return 'bla';//this.userObservable.displayName;
     } else {
       return '';
     }

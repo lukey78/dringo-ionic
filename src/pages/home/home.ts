@@ -12,7 +12,7 @@ import {LoginPage} from "../login/login";
 })
 export class HomePage {
 
-  public user: Observable<User>;
+  public user: User;
 
   constructor(public navCtrl: NavController, private auth: AuthService) {
     this.user = auth.getCurrentUser();

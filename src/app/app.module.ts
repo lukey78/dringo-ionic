@@ -11,6 +11,7 @@ import { Http } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireOfflineModule } from 'angularfire2-offline';
 //import * as firebase from 'firebase/app';
 
 import { MyApp } from './app.component';
@@ -53,6 +54,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireOfflineModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

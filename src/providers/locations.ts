@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Location } from '../models/location';
+import { AuthService } from "./auth-service";
+
+import { AfoListObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
+
 
 @Injectable()
 export class LocationsProvider {
 
-  items: FirebaseListObservable<any>;
+  items: AfoListObservable<any>;
 
-  constructor(public http: Http, public db: AngularFireDatabase) {
-    console.log('Hello Locations Provider');
+  constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService) {
     this.items = this.db.list('/locations', {
       query: {
         orderByChild: 'nameCanonical'
@@ -29,6 +31,8 @@ export class LocationsProvider {
   }
 
   addItem(item: Location): string {
+    item.createdById = this.auth.getUserId();
+    item.createdByName = this.auth.getUserName();
     return this.items.push(item).key;
   }
 
