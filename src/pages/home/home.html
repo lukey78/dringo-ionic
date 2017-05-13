@@ -5,17 +5,25 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Hallo</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <img class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
+      </ion-col>
+      <ion-col col-8>
+        <p class="username">
+          {{ user.displayName ? user.displayName : "Anonymous"}}
+
+          <button ion-button small icon-only (click)="openProfile()">
+            <ion-icon name="edit"></ion-icon>
+          </button>
+        </p>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <p>
     {{ user | json }}
-  </p>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
   </p>
 
   <button ion-button (click)="logout()">Logout</button>

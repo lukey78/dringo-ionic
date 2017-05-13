@@ -52,6 +52,10 @@ export class AuthService {
     return this.currentUser ? this.currentUser.displayName : "";
   }
 
+  isAnonymous(): boolean {
+    return this.currentUser && this.currentUser.isAnonymous;
+  }
+
   getDisplayName(): string {
     if (this.userObservable !== null) {
       return 'bla';//this.userObservable.displayName;
