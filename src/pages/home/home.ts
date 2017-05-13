@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {ModalController, NavController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
 import {User} from "firebase/app";
-import {LoginPage} from "../login/login";
 import {ProfilePage} from "../profile/profile";
 
 
@@ -23,8 +22,4 @@ export class HomePage {
     editModal.present();
   }
 
-  logout() {
-    this.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);
-  }
 }

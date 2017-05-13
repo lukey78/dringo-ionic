@@ -27,6 +27,7 @@ import { LocationsProvider } from '../providers/locations';
 import {LoginPage} from "../pages/login/login";
 import {LoginModule} from "../pages/login/login.module";
 import {HomeModule} from "../pages/home/home.module";
+import {GooglePlus} from "@ionic-native/google-plus";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -80,6 +81,7 @@ export const firebaseConfig = {
     SplashScreen,
     AuthService,
     LocationsProvider,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

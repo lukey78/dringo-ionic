@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular
 import {AuthService} from "../../providers/auth-service";
 import {User} from "firebase/app";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoginPage} from "../login/login";
 
 @IonicPage()
 @Component({
@@ -35,5 +36,10 @@ export class ProfilePage {
 
   cancel() {
     this.viewCtrl.dismiss();
+  }
+
+  logout() {
+    this.auth.signOut();
+    this.navCtrl.setRoot(LoginPage);
   }
 }
