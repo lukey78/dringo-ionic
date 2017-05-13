@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "511139085903",
+    "firebase_url": "https://dringo-f9348.firebaseio.com",
+    "project_id": "dringo-f9348",
+    "storage_bucket": "dringo-f9348.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511139085903:android:483630e1bfb5a99c",
+        "android_client_info": {
+          "package_name": "com.jenshassler.dringo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511139085903-lja3jpnm65jb0lpss6csmglp8c8s0da1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jenshassler.dringo",
+            "certificate_hash": "9a29e4740be0329bfb05203c29692a7cab42aa85"
+          }
+        },
+        {
+          "client_id": "511139085903-od66496cireh8hudjo93bdaulqurcjks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1gBEXaxxwfcvVoJzBpWLdO34Youb8NT0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511139085903-46b5cc7aq86mncomd54peajlppn3d5jp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jenshassler.dringo"
+              }
+            },
+            {
+              "client_id": "511139085903-od66496cireh8hudjo93bdaulqurcjks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
