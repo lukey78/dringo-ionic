@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ 'profile.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <img class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
+      </ion-col>
+      <ion-col col-8>
+        <p class="username">
+          {{ user.displayName ? user.displayName : "Anonymous"}}
+        </p>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <form [formGroup]="editForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>{{ 'profile.field.displayName' | translate }}</ion-label>
+        <ion-input formControlName="displayName" [class.invalid]="!editForm.controls.displayName.valid && (editForm.controls.displayName.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'location.field.country' | translate}}</ion-label>
+        <ion-select formControlName="country" [class.invalid]="!editForm.controls.country.valid && (editForm.controls.country.dirty || submitAttempt)">
+          <ion-option value="de">{{ 'field.country.de' | translate }}</ion-option>
+          <ion-option value="ch">{{ 'field.country.ch' | translate }}</ion-option>
+          <ion-option value="fr">{{ 'field.country.fr' | translate }}</ion-option>
+          <ion-option value="it">{{ 'field.country.it' | translate }}</ion-option>
+          <ion-option value="at">{{ 'field.country.at' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+  </form>
+
+
+  <p>
+    {{ user | json }}
+  </p>
+
+  <button ion-button (click)="logout()">Logout</button>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <button color="primary" block ion-button full (click)="save()">
+            {{ 'controls.save' | translate }}
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button color="secondary" ion-button full (click)="cancel()">
+            {{ 'controls.cancel' | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

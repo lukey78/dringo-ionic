@@ -31,6 +31,16 @@
         "climb": "Klettern!",
         "stats": "Stats"
     },
+    "profile": {
+        "title": "Mein Profil",
+        "field": {
+            "displayName": "Anzeigename"
+        },
+        "logout": "Ausloggen",
+        "anonymous": "Du bist ein anonymer Benutzer. Wenn du dich auf jedem Gerät einloggen und deine gekletterten Routen behalten möchtest, brauchst du einen richtigen Account.",
+        "connectWithGoogle": "Mit Google-Konto verbinden",
+        "connectWithFacebook": "Mit Facebook-Konto verbinden"
+    },
     "dashboard": {
         "profile": "Profil",
         "chooseLocation": "Wähle einen Ort zum Klettern",

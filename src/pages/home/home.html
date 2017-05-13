@@ -8,24 +8,18 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
+        <img (click)="openProfile()" class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
       </ion-col>
       <ion-col col-8>
         <p class="username">
           {{ user.displayName ? user.displayName : "Anonymous"}}
-
-          <button ion-button small icon-only (click)="openProfile()">
-            <ion-icon name="edit"></ion-icon>
-          </button>
         </p>
 
       </ion-col>
     </ion-row>
   </ion-grid>
-  <p>
-    {{ user | json }}
-  </p>
 
-  <button ion-button (click)="logout()">Logout</button>
+  <p>
+  </p>
 
 </ion-content>
