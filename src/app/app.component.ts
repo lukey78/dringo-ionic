@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
 
-import { TabsPage } from '../pages/tabs/tabs';
 import { AuthService } from "../providers/auth-service";
 import { LoginPage } from "../pages/login/login";
 

@@ -25,6 +25,12 @@
             "at": "Österreich"
         }
     },
+    "tabs": {
+        "profile": "Ich",
+        "locations": "Orte",
+        "climb": "Klettern!",
+        "stats": "Stats"
+    },
     "dashboard": {
         "profile": "Profil",
         "chooseLocation": "Wähle einen Ort zum Klettern",

@@ -1,4 +1,6 @@
 <ion-tabs color="secondary">
-  <ion-tab [root]="rootHome" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="rootLocations" tabTitle="Orte" tabIcon="navigate"></ion-tab>
+  <ion-tab [root]="rootHome" tabTitle="{{ 'tabs.profile' | translate }}" tabIcon="contact"></ion-tab>
+  <ion-tab [root]="rootLocations" tabTitle="{{ 'tabs.locations' | translate }}" tabIcon="navigate"></ion-tab>
+  <ion-tab [root]="rootLocations" tabTitle="{{ 'tabs.climb' | translate }}" tabIcon="climber"></ion-tab>
+  <ion-tab [root]="rootLocations" tabTitle="{{ 'tabs.stats' | translate }}" tabIcon="stats"></ion-tab>
 </ion-tabs>
