@@ -16,12 +16,25 @@
         <div class="username">
           {{ user.displayName ? user.displayName : "Anonymous"}}
         </div>
-        <button ion-button small (click)="logout()">{{ 'profile.logout' | translate }}</button>
-
+        <button [style.display]="user.isAnonymous === true ? 'none' : 'inline'" ion-button small (click)="logout()">{{ 'profile.logout' | translate }}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
+  <div [style.display]="user.isAnonymous === true ? 'inline' : 'none'">
+    <div class="anonymousInfo">
+      {{ 'profile.anonymous' | translate }}
+    </div>
+
+    <button ion-button full icon-left (click)="linkWithGoogle()">
+      <ion-icon name="logo-google"></ion-icon>
+      {{ 'profile.connectWithGoogle' | translate }}
+    </button>
+    <button ion-button full icon-left (click)="linkWithFacebook()">
+      <ion-icon name="logo-facebook"></ion-icon>
+      {{ 'profile.connectWithFacebook' | translate }}
+    </button>
+  </div>
 
   <form [formGroup]="editForm">
     <ion-list>
@@ -48,7 +61,7 @@
   <p>
     {{ user | json }}
   </p>
-  §
+
 </ion-content>
 
 

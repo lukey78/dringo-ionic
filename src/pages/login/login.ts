@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
 import { TabsPage } from "../tabs/tabs";
+import {TranslateService} from "@ngx-translate/core";
 
 /**
  * Generated class for the Login page.
@@ -16,7 +17,7 @@ import { TabsPage } from "../tabs/tabs";
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService, private alertCtrl: AlertController, private translator: TranslateService, private loadingCtrl: LoadingController) {
     // forward to TabsPage if we are already logged in
     auth.getUserObservable().subscribe(user => {
       if (this.navCtrl && user) {
@@ -25,16 +26,50 @@ export class LoginPage {
     });
   }
 
+  // disabled at the moment
   loginAnon() {
     let me = this;
-    this.auth.signInAnonymously().then(function() {
-      me.navCtrl.setRoot(TabsPage);
+
+    this.presentConfirm(this.translator.instant('welcome.loginAnon'), this.translator.instant('welcome.anonInfo'), function() {
+      me.auth.signInAnonymously().then(function() {
+        me.navCtrl.setRoot(TabsPage);
+      });
+    })
+  }
+
+  presentConfirm(title: string, message: string, okHandler: Function) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: this.translator.instant('controls.cancel'),
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: this.translator.instant('controls.ok'),
+          handler: () => {
+            okHandler()
+          }
+        }
+      ]
     });
+    alert.present();
   }
 
   loginWithGoogle() {
     let me = this;
+
+    let loading = this.loadingCtrl.create({
+      content: this.translator.instant('controls.pleaseWait')
+    });
+
+    loading.present();
+
     this.auth.signInWithGoogle().then(function() {
+      loading.dismiss();
       me.navCtrl.setRoot(TabsPage);
     });
   }

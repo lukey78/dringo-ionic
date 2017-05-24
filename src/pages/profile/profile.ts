@@ -29,6 +29,20 @@ export class ProfilePage {
     this.editForm.patchValue(this.user);
   }
 
+  linkWithGoogle() {
+    this.auth.linkWithGoogle().then(userInfo => {
+      this.user = this.auth.getCurrentUser();
+      this.editForm.patchValue(this.user);
+    });
+  }
+
+  linkWithFacebook() {
+    this.auth.linkWithFacebook().then(userInfo => {
+      this.user = this.auth.getCurrentUser();
+      this.editForm.patchValue(this.user);
+    });
+  }
+
   save() {
     this.viewCtrl.dismiss();
 

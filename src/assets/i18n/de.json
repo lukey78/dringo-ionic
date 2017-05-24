@@ -5,16 +5,19 @@
         "back": "Zurück",
         "cancel": "Abbrechen",
         "save": "Speichern",
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "pleaseWait": "Bitte warten..."
     },
     "dringo": {
+        "title": "dringo",
         "description": "die Kletter-App"
     },
     "welcome": {
-        "greetingUnknown": "Hallo! Du benutzt dringo zum ersten Mal. Bitte sag mir deinen Namen, damit ich Dein Profil erstellen kann. Deine Daten werden nur lokal gespeichert.",
-        "greetingHello": "Hallo",
-        "greetingKnown": "Schön dass du zurück bist.",
-        "letsgo": "Los geht's"
+        "greeting": "Hallo, schön dass du da bist!",
+        "loginAnon": "Anonym ausprobieren",
+        "anonInfo": "Wenn du anonym bist, kannst du bestehende Routen klettern, aber keine neuen Orte oder Routen selbst erstellen. Du kannst dein anonymes Konto aber jederzeit in ein richtiges umwandeln.",
+        "loginGoogle": "Mit Google anmelden",
+        "loginFacebook": "Mit Facebook anmelden"
     },
     "field": {
         "country": {
@@ -37,7 +40,7 @@
             "displayName": "Anzeigename"
         },
         "logout": "Ausloggen",
-        "anonymous": "Du bist ein anonymer Benutzer. Wenn du dich auf jedem Gerät einloggen und deine gekletterten Routen behalten möchtest, brauchst du einen richtigen Account.",
+        "anonymous": "Du bist ein anonymer Benutzer. Wenn du alle Funktionen der App verwenden und deine gekletterten Routen behalten möchtest, brauchst du einen richtigen Account.",
         "connectWithGoogle": "Mit Google-Konto verbinden",
         "connectWithFacebook": "Mit Facebook-Konto verbinden"
     },

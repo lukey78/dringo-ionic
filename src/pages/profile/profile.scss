@@ -13,6 +13,12 @@
       font-size: 20px;
     }
 
+    .anonymousInfo {
+      text-align: center;
+      background-color: color($colors, danger);
+      padding: 15px;
+    }
+
     p {
       font-size: 0.8em;
     }

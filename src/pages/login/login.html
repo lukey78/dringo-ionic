@@ -1,13 +1,30 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click)="loginAnon()">Login (anonym)</button>
-  <button ion-button (click)="loginWithGoogle()">Login mit Google</button>
+<ion-content padding no-bounce>
+
+  <div class="logo">
+    <img src="assets/images/climber.png" />
+    <span class="title">{{ 'dringo.title' | translate }}</span>
+    <span class="subtitle">{{ 'dringo.description' | translate }}</span>
+  </div>
+
+  <div class="welcome">{{ 'welcome.greeting' | translate }}</div>
+
+  <div class="login-buttons">
+<!--
+    <button ion-button full icon-left (click)="loginAnon()">
+      <ion-icon name="anonymous"></ion-icon>
+      {{ 'welcome.loginAnon' | translate }}
+    </button>
+    <div padding>oder</div>
+-->
+    <button ion-button full icon-left (click)="loginWithGoogle()">
+      <ion-icon name="logo-google"></ion-icon>
+      {{ 'welcome.loginGoogle' | translate }}
+    </button>
+    <button ion-button full icon-left (click)="loginWithFacebook()">
+      <ion-icon name="logo-facebook"></ion-icon>
+      {{ 'welcome.loginFacebook' | translate }}
+    </button>
+  </div>
 </ion-content>
