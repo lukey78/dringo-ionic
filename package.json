@@ -11,6 +11,7 @@
         "ionic:serve": "ionic-app-scripts serve"
     },
     "dependencies": {
+        "@angular/animations": "4.1.0",
         "@angular/common": "4.1.0",
         "@angular/compiler": "4.1.0",
         "@angular/compiler-cli": "4.1.0",
@@ -28,6 +29,7 @@
         "@ngx-translate/http-loader": "0.0.3",
         "angularfire2": "^4.0.0-rc.0",
         "angularfire2-offline": "^4.0.1",
+        "animate.css": "^3.5.2",
         "bufferutil": "^1.0.0",
         "cordova-android": "^6.2.3",
         "cordova-plugin-console": "1.0.5",

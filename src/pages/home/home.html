@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img (click)="openProfile()" class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
+        <img (tap)="openProfile()" class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
       </ion-col>
       <ion-col col-8>
         <p class="username">
