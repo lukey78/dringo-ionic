@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
-import {User} from "firebase/app";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginPage} from "../login/login";
+import {UserProvider} from "../../providers/users";
+import {User} from "../../models/user";
+import {Observable} from "rxjs/Observable";
+import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
@@ -16,11 +19,15 @@ export class ProfilePage {
   editForm: FormGroup;
   submitAttempt: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private viewCtrl: ViewController, private formBuilder: FormBuilder) {
-    this.user = auth.getCurrentUser();
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private viewCtrl: ViewController, private formBuilder: FormBuilder, private userProvider: UserProvider, private translator: TranslateService) {
+    auth.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
     this.editForm = this.formBuilder.group({
       id: [''],
-      displayName: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(30), Validators.required])],
+      language: ['', Validators.compose([Validators.required])],
+      city: [''],
+      name: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(30), Validators.required])],
       country: ['', Validators.compose([Validators.required])]
     });
   }
@@ -31,21 +38,25 @@ export class ProfilePage {
 
   linkWithGoogle() {
     this.auth.linkWithGoogle().then(userInfo => {
-      this.user = this.auth.getCurrentUser();
+      //this.user = this.auth.getCurrentUser();
       this.editForm.patchValue(this.user);
     });
   }
 
   linkWithFacebook() {
     this.auth.linkWithFacebook().then(userInfo => {
-      this.user = this.auth.getCurrentUser();
+      //this.user = this.auth.getCurrentUser();
       this.editForm.patchValue(this.user);
     });
   }
 
   save() {
-    this.viewCtrl.dismiss();
-
+    if (this.editForm.valid) {
+      this.user.updateFromForm(this.editForm.value);
+      this.userProvider.updateItem(this.user.id, this.user);
+      this.viewCtrl.dismiss();
+      this.translator.use(this.user.language);
+    }
   }
 
   cancel() {

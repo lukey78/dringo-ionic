@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {ModalController, NavController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
-import {User} from "firebase/app";
 import {ProfilePage} from "../profile/profile";
+import {User} from "../../models/user";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'page-home',
@@ -15,13 +16,25 @@ export class HomePage {
   //pulseState: boolean = false;
 
   constructor(public navCtrl: NavController, private auth: AuthService, private modalCtrl: ModalController) {
-    this.user = auth.getCurrentUser();
+  }
+
+  private updateUser() {
+    this.auth.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
+  }
+
+  ionViewDidEnter() {
+    this.updateUser();
   }
 
   openProfile() {
     //this.togglePulse();
     let editModal = this.modalCtrl.create(ProfilePage);
     editModal.present();
+    editModal.onDidDismiss(() => {
+      this.updateUser();
+    });
   }
 
 /*

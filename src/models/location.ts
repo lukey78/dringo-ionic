@@ -25,6 +25,7 @@ export class Location {
 
     public updateFromForm(data) {
         this.name = data.name;
+        this.nameCanonical = this.name.toLocaleLowerCase();
         this.city = data.city;
         this.country = data.country;
         this.indoor = data.indoor == "true";

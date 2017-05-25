@@ -37,7 +37,6 @@ export class LocationsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Locations');
   }
 
 }

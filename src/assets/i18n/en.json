@@ -1,19 +1,54 @@
 {
     "controls": {
         "ok": "OK",
-        "back": "Zurück",
-        "cancel": "Abbrechen",
-        "save": "Speichern",
-        "delete": "Löschen"
+        "edit": "Edit",
+        "back": "Back",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "pleaseWait": "Please wait..."
     },
     "dringo": {
-        "description": "die Kletter-App"
+        "title": "dringo",
+        "description": "the climber's app"
     },
     "welcome": {
-        "greetingUnknown": "Hallo! Du benutzt dringo zum ersten Mal. Bitte sag mir deinen Namen, damit ich Dein Profil erstellen kann. Deine Daten werden nur lokal gespeichert.",
-        "greetingHello": "Hallo",
-        "greetingKnown": "Schön dass du zurück bist.",
-        "letsgo": "Los geht's"
+        "greeting": "Hi, welcome back!",
+        "loginAnon": "Anonym ausprobieren",
+        "anonInfo": "Wenn du anonym bist, kannst du bestehende Routen klettern, aber keine neuen Orte oder Routen selbst erstellen. Du kannst dein anonymes Konto aber jederzeit in ein richtiges umwandeln.",
+        "loginGoogle": "Login with Google",
+        "loginFacebook": "Login with Facebook"
+    },
+    "field": {
+        "country": {
+            "de": "Deutschland",
+            "ch": "Schweiz",
+            "fr": "Frankreich",
+            "it": "Italien",
+            "at": "Österreich"
+        },
+        "language": {
+            "de": "Deutsch",
+            "en": "Englisch",
+            "fr": "Französisch"
+        }
+    },
+    "tabs": {
+        "profile": "Me",
+        "locations": "Locations",
+        "climb": "Climb!",
+        "stats": "Stats"
+    },
+    "profile": {
+        "title": "Mein Profil",
+        "field": {
+            "displayName": "Anzeigename",
+            "language": "Sprache"
+        },
+        "logout": "Ausloggen",
+        "anonymous": "Du bist ein anonymer Benutzer. Wenn du alle Funktionen der App verwenden und deine gekletterten Routen behalten möchtest, brauchst du einen richtigen Account.",
+        "connectWithGoogle": "Mit Google-Konto verbinden",
+        "connectWithFacebook": "Mit Facebook-Konto verbinden"
     },
     "dashboard": {
         "profile": "Profil",
@@ -23,12 +58,21 @@
     },
     "location": {
         "title": "Orte",
-        "edit": "Ort bearbeiten",
-        "new": "Neuen Ort erstellen",
+        "new": "Neuen Ort hinzufügen",
+        "delete": {
+            "confirm": "Möchtest du diesen Ort wirklich löschen?"
+        },
         "field": {
             "name": "Name",
             "city": "Stadt/Region",
-            "indoor": "Halle?",
+            "country": "Land",
+            "indoor": {
+                "title": "Indoor/Outdoor",
+                "opt": {
+                    "indoor": "Indoor (Halle)",
+                    "outdoor": "Outdoor (Fels)"
+                }
+            },
             "routeCount": "Routen"
         }
     },

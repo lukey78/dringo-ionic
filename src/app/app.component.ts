@@ -22,6 +22,10 @@ export class MyApp {
 
       // set fallback language to de
       translate.setDefaultLang('de');
+
+      if (['de', 'fr', 'en'].indexOf(translate.getBrowserLang()) >= 0) {
+        translate.use(translate.getBrowserLang());
+      }
     });
   }
 }

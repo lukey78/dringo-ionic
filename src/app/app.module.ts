@@ -26,6 +26,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { AuthService } from '../providers/auth-service';
 import { LocationsProvider } from '../providers/locations';
+import {UserProvider} from "../providers/users";
 import {LoginPage} from "../pages/login/login";
 import {LoginModule} from "../pages/login/login.module";
 import {HomeModule} from "../pages/home/home.module";
@@ -84,6 +85,7 @@ export const firebaseConfig = {
     SplashScreen,
     AuthService,
     LocationsProvider,
+    UserProvider,
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -5,17 +5,28 @@ import { Platform } from 'ionic-angular';
 import * as firebase from 'firebase/app';
 import { auth } from 'firebase'; //needed for the GoogleAuthProvider
 import { GooglePlus } from '@ionic-native/google-plus';
+import {UserProvider} from "./users";
+import {User} from "../models/user";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable()
 export class AuthService {
 
   private userObservable: Observable<firebase.User>;
-  private currentUser: firebase.User;
+  private currentUser: Observable<User>;
+  private loadedUser: User;
 
-  constructor(public afAuth: AngularFireAuth, private platform: Platform, private gplus: GooglePlus) {
+  constructor(public afAuth: AngularFireAuth, private platform: Platform, private gplus: GooglePlus, private userProvider: UserProvider, private translator: TranslateService) {
     this.userObservable = afAuth.authState;
     this.userObservable.subscribe(user => {
-      this.currentUser = user;
+      if (user) {
+        this.userProvider.updateOrCreateItemOnLogin(user);
+        this.currentUser = this.userProvider.getItem(user.uid);
+        this.currentUser.subscribe(appUser => {
+          this.loadedUser = appUser;
+          this.translator.use(appUser.language);
+        });
+      }
     });
   }
 
@@ -109,27 +120,20 @@ export class AuthService {
     return this.userObservable;
   }
 
-  getCurrentUser(): firebase.User {
+  getCurrentUser(): Observable<User> {
     return this.currentUser;
   }
 
   getUserId(): string {
-    return this.currentUser ? this.currentUser.uid : "";
+    return this.loadedUser ? this.loadedUser.id : "";
   }
 
   getUserName(): string {
-    return this.currentUser ? this.currentUser.displayName : "";
+    return this.loadedUser ? this.loadedUser.name : "";
   }
 
   isAnonymous(): boolean {
-    return this.currentUser && this.currentUser.isAnonymous;
-  }
-
-  getDisplayName(): string {
-    if (this.userObservable !== null) {
-      return 'bla';//this.userObservable.displayName;
-    } else {
-      return '';
-    }
+    return false;
+    //return this.currentUser && this.currentUser.isAnonymous;
   }
 }

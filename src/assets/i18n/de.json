@@ -26,6 +26,11 @@
             "fr": "Frankreich",
             "it": "Italien",
             "at": "Österreich"
+        },
+        "language": {
+            "de": "Deutsch",
+            "en": "Englisch",
+            "fr": "Französisch"
         }
     },
     "tabs": {
@@ -37,7 +42,8 @@
     "profile": {
         "title": "Mein Profil",
         "field": {
-            "displayName": "Anzeigename"
+            "displayName": "Anzeigename",
+            "language": "Sprache"
         },
         "logout": "Ausloggen",
         "anonymous": "Du bist ein anonymer Benutzer. Wenn du alle Funktionen der App verwenden und deine gekletterten Routen behalten möchtest, brauchst du einen richtigen Account.",

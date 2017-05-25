@@ -10,18 +10,18 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
+        <img class="avatar" src="{{ user.imageUrl !== null ? user.imageUrl : 'assets/images/icons/anonymous.png' }}" />
       </ion-col>
       <ion-col col-8>
         <div class="username">
-          {{ user.displayName ? user.displayName : "Anonymous"}}
+          {{ user.name ? user.name : "Anonymous"}}
         </div>
-        <button [style.display]="user.isAnonymous === true ? 'none' : 'inline'" ion-button small (click)="logout()">{{ 'profile.logout' | translate }}</button>
+        <button [style.display]="user.isAnonymous() === true ? 'none' : 'inline'" ion-button small (click)="logout()">{{ 'profile.logout' | translate }}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <div [style.display]="user.isAnonymous === true ? 'inline' : 'none'">
+  <div [style.display]="user.isAnonymous() === true ? 'inline' : 'none'">
     <div class="anonymousInfo">
       {{ 'profile.anonymous' | translate }}
     </div>
@@ -40,7 +40,7 @@
     <ion-list>
       <ion-item>
         <ion-label floating>{{ 'profile.field.displayName' | translate }}</ion-label>
-        <ion-input formControlName="displayName" [class.invalid]="!editForm.controls.displayName.valid && (editForm.controls.displayName.dirty || submitAttempt)"></ion-input>
+        <ion-input formControlName="name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -51,6 +51,15 @@
           <ion-option value="fr">{{ 'field.country.fr' | translate }}</ion-option>
           <ion-option value="it">{{ 'field.country.it' | translate }}</ion-option>
           <ion-option value="at">{{ 'field.country.at' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'profile.field.language' | translate}}</ion-label>
+        <ion-select formControlName="language" [class.invalid]="!editForm.controls.language.valid && (editForm.controls.language.dirty || submitAttempt)">
+          <ion-option value="de">{{ 'field.language.de' | translate }}</ion-option>
+          <ion-option value="en">{{ 'field.language.en' | translate }}</ion-option>
+          <ion-option value="fr">{{ 'field.language.fr' | translate }}</ion-option>
         </ion-select>
       </ion-item>
 

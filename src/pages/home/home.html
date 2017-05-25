@@ -8,11 +8,11 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img (tap)="openProfile()" class="avatar" src="{{ user.photoURL !== null ? user.photoURL : 'assets/images/icons/anonymous.png' }}" />
+        <img (tap)="openProfile()" class="avatar" src="{{ user?.imageUrl ? user.imageUrl : 'assets/images/icons/anonymous.png' }}" />
       </ion-col>
       <ion-col col-8>
         <p class="username">
-          {{ user.displayName ? user.displayName : "Anonymous"}}
+          {{ user?.name ? user.name : "Anonymous"}}
         </p>
 
       </ion-col>
