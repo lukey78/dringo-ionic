@@ -15,8 +15,6 @@ export class Location {
         if (this.name) {
             this.nameCanonical = name.toLocaleLowerCase();
         }
-        this.createdById = "";
-        this.createdByName = "";
     }
 
     static fromForm(data) {
@@ -25,7 +23,6 @@ export class Location {
 
     public updateFromForm(data) {
         this.name = data.name;
-        this.nameCanonical = this.name.toLocaleLowerCase();
         this.city = data.city;
         this.country = data.country;
         this.indoor = data.indoor == "true";
@@ -36,6 +33,6 @@ export class Location {
     }
 
     static fromJson({$key, name, city, country, indoor, createdById, createdByName}):Location {
-        return new Location($key, name, city, country, indoor, 0, createdById, createdByName);
+        return new Location($key, name, city, country, indoor, 0, createdById ? createdById  :"", createdByName ? createdByName : "");
     }
 }

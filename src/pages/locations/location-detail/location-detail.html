@@ -17,7 +17,7 @@
   </h3>
 
   <div padding-top>
-    <ion-item no-lines>
+    <ion-item no-lines (tap)="openRoutes()">
       {{ 'location.field.routeCount' | translate }} <ion-badge color="primary" item-right>{{ location?.routeCount }}</ion-badge>
     </ion-item>
   </div>

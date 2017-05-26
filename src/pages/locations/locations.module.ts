@@ -7,6 +7,7 @@ import { LocationsPage } from './locations';
 import { LocationNewModule } from './location-new/location-new.module';
 import { LocationEditModule } from './location-edit/location-edit.module';
 import { LocationDetailModule } from './location-detail/location-detail.module';
+import {RoutesModule} from "../routes/routes.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { LocationDetailModule } from './location-detail/location-detail.module';
     LocationNewModule,
     LocationEditModule,
     LocationDetailModule,
+    RoutesModule,
     IonicPageModule.forChild(LocationsPage),
     TranslateModule.forChild()
   ],

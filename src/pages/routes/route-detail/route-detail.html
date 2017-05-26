@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ route?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h1>
+    <ion-icon [style.display]="route?.indoor === true ? 'inline' : 'none'" name="home" item-left></ion-icon>
+    {{ route?.name }}
+  </h1>
+
+  <h3>
+    <span class="flag-icon flag-icon-{{ route?.country }}"></span>
+    {{ route?.city }}
+  </h3>
+
+  <div padding-top>
+    <ion-item no-lines>
+      {{ 'route.field.routeCount' | translate }} <ion-badge color="primary" item-right>{{ route?.routeCount }}</ion-badge>
+    </ion-item>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+    <button  ion-button full color="primary" (click)="openEditModal()">
+      {{ 'controls.edit' | translate }}
+    </button>
+</ion-footer>

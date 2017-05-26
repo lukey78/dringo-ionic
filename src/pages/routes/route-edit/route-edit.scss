@@ -1,0 +1,15 @@
+.ios, .md {
+
+  page-route-edit {
+
+    p {
+      font-size: 0.8em;
+    }
+
+    .invalid {
+      background-color: color($colors, danger);
+    }
+
+  }
+
+}

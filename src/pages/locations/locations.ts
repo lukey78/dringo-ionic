@@ -8,6 +8,7 @@ import { LocationDetailPage } from './location-detail/location-detail';
 import { Observable } from "rxjs/Observable";
 import {LocationNewPage} from "./location-new/location-new";
 
+
 @IonicPage()
 @Component({
   selector: 'page-locations',

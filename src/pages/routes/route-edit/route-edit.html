@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ route?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="editForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>{{ 'route.field.name' | translate }}</ion-label>
+        <ion-input formControlName="name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.city' | translate }}</ion-label>
+        <ion-input formControlName="city" [class.invalid]="!editForm.controls.city.valid && (editForm.controls.city.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.country' | translate}}</ion-label>
+        <ion-select formControlName="country" [class.invalid]="!editForm.controls.country.valid && (editForm.controls.country.dirty || submitAttempt)">
+          <ion-option value="de">{{ 'field.country.de' | translate }}</ion-option>
+          <ion-option value="ch">{{ 'field.country.ch' | translate }}</ion-option>
+          <ion-option value="fr">{{ 'field.country.fr' | translate }}</ion-option>
+          <ion-option value="it">{{ 'field.country.it' | translate }}</ion-option>
+          <ion-option value="at">{{ 'field.country.at' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.indoor.title' | translate }}</ion-label>
+        <ion-select formControlName="indoor" [class.invalid]="!editForm.controls.indoor.valid && (editForm.controls.indoor.dirty || submitAttempt)">
+          <ion-option value="true">{{ 'route.field.indoor.opt.indoor' | translate }}</ion-option>
+          <ion-option value="false">{{ 'route.field.indoor.opt.outdoor' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+  </form>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-5>
+          <button color="primary" block ion-button full (click)="save()">
+            {{ 'controls.save' | translate }}
+          </button>
+        </ion-col>
+        <ion-col col-5>
+          <button color="secondary" ion-button full (click)="cancel()">
+            {{ 'controls.cancel' | translate }}
+          </button>
+        </ion-col>
+        <ion-col col-2>
+          <button color="danger" ion-button icon-only full (click)="delete()">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

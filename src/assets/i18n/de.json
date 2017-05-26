@@ -80,15 +80,14 @@
         "title": "Routen in ",
         "edit": "Route bearbeiten",
         "new": "Neue Route erstellen",
+        "delete": {
+            "confirm": "Möchtest du diese Route wirklich löschen?"
+        },
         "field": {
             "name": "Name",
-            "description": "Bemerkung",
             "rating": "Schwierigkeit",
             "sector": "Sektor",
-            "author": "gebaut von",
-            "height": "Höhe",
-            "bolts": "Anzahl Haken",
-            "dateFrom": "Gebaut am",
+            "builder": "gebaut von",
             "active": "Aktiv?"
         }
     }

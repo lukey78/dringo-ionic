@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { LocationEditPage } from "../location-edit/location-edit";
 import { LocationsProvider } from '../../../providers/locations';
 import { Location } from '../../../models/location';
+import {RoutesPage} from "../../routes/routes";
 
 
 @IonicPage()
@@ -20,7 +21,7 @@ export class LocationDetailPage {
 
   ionViewDidEnter() {
     this.locationProvider.getItem(this.navParams.get('id')).subscribe(item => {
-      this.location = item
+      this.location = item;
     });
   }
 
@@ -32,6 +33,10 @@ export class LocationDetailPage {
       }
     });
     editModal.present();
+  }
+
+  openRoutes() {
+    this.navCtrl.push(RoutesPage, { "location": this.location })
   }
 
 }

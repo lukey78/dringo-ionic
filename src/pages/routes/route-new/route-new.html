@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ 'route.new' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="editForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>{{ 'route.field.name' | translate }}</ion-label>
+        <ion-input formControlName="name" [class.invalid]="!editForm.controls.name.valid && (editForm.controls.name.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.rating' | translate}}</ion-label>
+        <ion-select formControlName="ratingId" [class.invalid]="!editForm.controls.ratingId.valid && (editForm.controls.ratingId.dirty || submitAttempt)">
+          <ion-option *ngFor="let rating of ratings" value="{{ rating.id }}">
+            {{ rating.french }} |
+            UIAA: {{ rating.uiaa }} |
+            USA: {{ rating.usa }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.sector' | translate }}</ion-label>
+        <ion-input formControlName="sector" [class.invalid]="!editForm.controls.sector.valid && (editForm.controls.sector.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.builder' | translate }}</ion-label>
+        <ion-input formControlName="builder" [class.invalid]="!editForm.controls.builder.valid && (editForm.controls.builder.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+<!--
+      <ion-item>
+        <ion-label>{{ 'route.field.active' | translate }}</ion-label>
+        <ion-toggle formControlName="active"></ion-toggle>
+      </ion-item>
+-->
+
+    </ion-list>
+  </form>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <button color="primary" block ion-button full (click)="save()">
+            {{ 'controls.save' | translate }}
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button color="secondary" ion-button full (click)="cancel()">
+            {{ 'controls.cancel' | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
