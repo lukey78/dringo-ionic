@@ -27,6 +27,7 @@ export class RouteDetailPage {
     this.location = this.navParams.get('location');
     this.routeProvider.getItem(this.navParams.get('id')).subscribe(item => {
       this.route = item;
+      console.log(this.route);
       this.rating = this.ratingsProvider.getItem(item.ratingId);
     });
   }

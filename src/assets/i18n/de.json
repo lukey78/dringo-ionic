@@ -89,7 +89,8 @@
             "sector": "Sektor",
             "builder": "gebaut von",
             "active": "Aktiv?"
-        }
+        },
+        "inactiveInfo": "Diese Route ist leider nicht mehr aktiv. Wenn dies nicht zutrifft, dann bearbeite die Route und aktiviere Sie erneut."
     }
 
 }

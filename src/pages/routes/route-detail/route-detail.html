@@ -32,6 +32,10 @@
     </ion-item>
   </ion-list>
 
+  <div [style.display]="route?.active === false ? 'block' : 'none'" class="inactiveInfo">
+    {{ 'route.inactiveInfo' | translate }}
+  </div>
+
 </ion-content>
 
 <ion-footer>
