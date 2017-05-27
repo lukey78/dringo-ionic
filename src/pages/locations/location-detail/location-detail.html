@@ -18,7 +18,7 @@
 
   <div padding-top>
     <ion-item no-lines (tap)="openRoutes()">
-      {{ 'location.field.routeCount' | translate }} <ion-badge color="primary" item-right>{{ location?.routeCount }}</ion-badge>
+      {{ 'location.field.routeCount' | translate }} <ion-badge color="primary" item-right>{{ (routes | async)?.length}}</ion-badge>
     </ion-item>
   </div>
 

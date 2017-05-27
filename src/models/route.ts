@@ -24,12 +24,15 @@ export class Route {
         this.name = data.name;
         this.sector = data.sector;
         this.builder = data.builder;
-        this.active = data.active == "true";
+        this.active = data.active;
         this.ratingId = data.ratingId;
         this.updateCanonicals();
     }
 
     static fromJsonList(array): Route[] {
+        array.sort(function(a, b) {
+            return a.nameCanonical.localeCompare(b.nameCanonical);
+        });
         return array.map(Route.fromJson);
     }
 

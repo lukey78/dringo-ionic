@@ -8,7 +8,6 @@ export class Location {
         public city: string,
         public country: string,
         public indoor: boolean,
-        public routeCount: number,
         public createdById: string,
         public createdByName: string
     ) {
@@ -18,7 +17,7 @@ export class Location {
     }
 
     static fromForm(data) {
-        return new Location(null, data.name, data.city, data.country, data.indoor == "true", 0, "", "");
+        return new Location(null, data.name, data.city, data.country, data.indoor == "true", "", "");
     }
 
     public updateFromForm(data) {
@@ -33,6 +32,6 @@ export class Location {
     }
 
     static fromJson({$key, name, city, country, indoor, createdById, createdByName}):Location {
-        return new Location($key, name, city, country, indoor, 0, createdById ? createdById  :"", createdByName ? createdByName : "");
+        return new Location($key, name, city, country, indoor, createdById ? createdById  :"", createdByName ? createdByName : "");
     }
 }

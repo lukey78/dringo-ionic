@@ -7,20 +7,30 @@
 
 <ion-content padding>
   <h1>
-    <ion-icon [style.display]="route?.indoor === true ? 'inline' : 'none'" name="home" item-left></ion-icon>
     {{ route?.name }}
   </h1>
 
   <h3>
-    <span class="flag-icon flag-icon-{{ route?.country }}"></span>
-    {{ route?.city }}
+    <ion-icon name="navigate-outline" item-left></ion-icon>
+    {{ location?.name }}
   </h3>
 
-  <div padding-top>
-    <ion-item no-lines>
-      {{ 'route.field.routeCount' | translate }} <ion-badge color="primary" item-right>{{ route?.routeCount }}</ion-badge>
+  <ion-list>
+    <ion-item>
+      {{ 'route.field.sector' | translate }}:
+      {{ route?.sector }}
     </ion-item>
-  </div>
+
+    <ion-item>
+      {{ 'route.field.builder' | translate }}:
+      {{ route?.builder }}
+    </ion-item>
+
+    <ion-item>
+      {{ 'route.field.rating' | translate }}:
+      {{ rating?.french }} | {{ rating?.uiaa}} | {{ rating?.usa }}
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 

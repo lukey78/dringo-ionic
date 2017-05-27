@@ -5,6 +5,8 @@ import { RoutesProvider } from '../../../providers/routes';
 
 import { Route } from "../../../models/route";
 import { TranslateService } from "@ngx-translate/core";
+import {Rating} from "../../../models/rating";
+import {RatingsProvider} from "../../../providers/ratings";
 
 
 @IonicPage()
@@ -15,17 +17,20 @@ import { TranslateService } from "@ngx-translate/core";
 export class RouteEditPage {
 
   route: Route;
+  ratings: Array<Rating>;
 
   editForm: FormGroup;
   submitAttempt: boolean;
 
-  constructor(private viewCtrl: ViewController, private navParams: NavParams, private formBuilder: FormBuilder, private routesProvider: RoutesProvider, private alertCtrl: AlertController, private translator: TranslateService) {
+  constructor(private viewCtrl: ViewController, private navParams: NavParams, private formBuilder: FormBuilder, private routesProvider: RoutesProvider, private alertCtrl: AlertController, private translator: TranslateService, private ratingsProvider: RatingsProvider) {
+    this.ratings = ratingsProvider.getItems();
+
     this.editForm = this.formBuilder.group({
-      id: [''],
       name: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(30), Validators.required])],
-      city: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
-      country: ['', Validators.compose([Validators.required])],
-      indoor: ['', Validators.compose([Validators.required])]
+      sector: [''],
+      ratingId: ['', Validators.compose([Validators.required])],
+      builder: [''],
+      active: ['']
     });
   }
 

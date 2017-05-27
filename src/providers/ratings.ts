@@ -62,7 +62,7 @@ export class RatingsProvider {
     return this.items;
   }
 
-  getItem(key: string): Rating {
+  getItem(key: number): Rating {
     return this.items[key];
   }
 

@@ -8,6 +8,8 @@ import { RouteDetailPage } from './route-detail/route-detail';
 import { Observable } from "rxjs/Observable";
 import {RouteNewPage} from "./route-new/route-new";
 import {Location} from "../../models/location";
+import {RatingsProvider} from "../../providers/ratings";
+import {Rating} from "../../models/rating";
 
 @IonicPage()
 @Component({
@@ -19,7 +21,7 @@ export class RoutesPage {
   location: Location;
   routes: Observable<Route[]>;
 
-  constructor(private navCtrl: NavController, public navParams: NavParams,  private modalCtrl: ModalController, private routesProvider: RoutesProvider) {
+  constructor(private navCtrl: NavController, public navParams: NavParams,  private modalCtrl: ModalController, private routesProvider: RoutesProvider, public   ratingsProvider: RatingsProvider) {
   }
 
   ionViewDidEnter() {
@@ -28,7 +30,7 @@ export class RoutesPage {
   }
 
   edit(route: Route) {
-    this.navCtrl.push(RouteDetailPage, { "id": route.id })
+    this.navCtrl.push(RouteDetailPage, { "id": route.id, "location": this.location })
   }
 
   add() {

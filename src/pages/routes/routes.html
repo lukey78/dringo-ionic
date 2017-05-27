@@ -1,14 +1,15 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>{{ 'route.title' | translate }} {{ location?.name }}</ion-title>
+    <ion-title>{{ 'route.title' | translate }} ({{ (routes | async)?.length }})</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let route of routes | async" (click)="edit(route)">
-      <ion-icon name="navigate-outline" item-left></ion-icon>
-      <h2>{{ route.name }}</h2>
+      <ion-icon name="climber" item-left></ion-icon>
+        {{ route.name }}
+        <ion-badge color="primary" item-right>{{ ratingsProvider.getItem(route.ratingId).french }}</ion-badge>
     </button>
   </ion-list>
 

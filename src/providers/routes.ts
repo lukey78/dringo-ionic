@@ -34,9 +34,23 @@ export class RoutesProvider {
     this.locationSubject.next(locationId);
     return this.items.map(Route.fromJsonList);
   }
+  
+  /** there's no simple way to just query the count, so we query all and return the count... pff
+  getItemCount(locationId: string): Observable<number> {
+    /**
+    this.locationSubject.next(locationId);
+
+    return Observable.create(observer => {
+      this.items.subscribe(data => {
+        observer.next(data.length);
+        observer.complete();
+      });
+    });
+  }
+  */
 
   getItem(key: string): Observable<Route> {
-    return this.db.object('/route/' + key).map(Route.fromJson);
+    return this.db.object('/routes/' + key).map(Route.fromJson);
   }
 
   addItem(item: Route): string {

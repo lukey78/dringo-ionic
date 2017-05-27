@@ -77,14 +77,14 @@
         }
     },
     "route": {
-        "title": "Routen in ",
+        "title": "Routen",
         "edit": "Route bearbeiten",
         "new": "Neue Route erstellen",
         "delete": {
             "confirm": "Möchtest du diese Route wirklich löschen?"
         },
         "field": {
-            "name": "Name",
+            "name": "Name/Farbe",
             "rating": "Schwierigkeit",
             "sector": "Sektor",
             "builder": "gebaut von",

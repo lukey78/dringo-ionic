@@ -4,6 +4,9 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { RouteEditPage } from "../route-edit/route-edit";
 import { RoutesProvider } from '../../../providers/routes';
 import { Route } from '../../../models/route';
+import {Location} from "../../../models/location";
+import {Rating} from "../../../models/rating";
+import {RatingsProvider} from "../../../providers/ratings";
 
 
 @IonicPage()
@@ -14,13 +17,17 @@ import { Route } from '../../../models/route';
 export class RouteDetailPage {
 
   route: Route;
+  rating: Rating;
+  location: Location;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController, private routeProvider: RoutesProvider) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController, private routeProvider: RoutesProvider, private ratingsProvider: RatingsProvider) {
   }
 
   ionViewDidEnter() {
+    this.location = this.navParams.get('location');
     this.routeProvider.getItem(this.navParams.get('id')).subscribe(item => {
-      this.route = item
+      this.route = item;
+      this.rating = this.ratingsProvider.getItem(item.ratingId);
     });
   }
 

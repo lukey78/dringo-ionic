@@ -14,27 +14,29 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>{{ 'route.field.city' | translate }}</ion-label>
-        <ion-input formControlName="city" [class.invalid]="!editForm.controls.city.valid && (editForm.controls.city.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>{{ 'route.field.country' | translate}}</ion-label>
-        <ion-select formControlName="country" [class.invalid]="!editForm.controls.country.valid && (editForm.controls.country.dirty || submitAttempt)">
-          <ion-option value="de">{{ 'field.country.de' | translate }}</ion-option>
-          <ion-option value="ch">{{ 'field.country.ch' | translate }}</ion-option>
-          <ion-option value="fr">{{ 'field.country.fr' | translate }}</ion-option>
-          <ion-option value="it">{{ 'field.country.it' | translate }}</ion-option>
-          <ion-option value="at">{{ 'field.country.at' | translate }}</ion-option>
+        <ion-label floating>{{ 'route.field.rating' | translate}}</ion-label>
+        <ion-select formControlName="ratingId" [class.invalid]="!editForm.controls.ratingId.valid && (editForm.controls.ratingId.dirty || submitAttempt)">
+          <ion-option *ngFor="let rating of ratings" value="{{ rating.id }}">
+            {{ rating.french }} |
+            UIAA: {{ rating.uiaa }} |
+            USA: {{ rating.usa }}
+          </ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>{{ 'route.field.indoor.title' | translate }}</ion-label>
-        <ion-select formControlName="indoor" [class.invalid]="!editForm.controls.indoor.valid && (editForm.controls.indoor.dirty || submitAttempt)">
-          <ion-option value="true">{{ 'route.field.indoor.opt.indoor' | translate }}</ion-option>
-          <ion-option value="false">{{ 'route.field.indoor.opt.outdoor' | translate }}</ion-option>
-        </ion-select>
+        <ion-label floating>{{ 'route.field.sector' | translate }}</ion-label>
+        <ion-input formControlName="sector" [class.invalid]="!editForm.controls.sector.valid && (editForm.controls.sector.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'route.field.builder' | translate }}</ion-label>
+        <ion-input formControlName="builder" [class.invalid]="!editForm.controls.builder.valid && (editForm.controls.builder.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{ 'route.field.active' | translate }}</ion-label>
+        <ion-toggle formControlName="active"></ion-toggle>
       </ion-item>
 
     </ion-list>
