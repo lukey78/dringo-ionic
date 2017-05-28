@@ -1,6 +1,6 @@
 export class Route {
 
-    private nameCanonical: string;
+    public nameCanonical: string;
 
     constructor(
         public id: string,

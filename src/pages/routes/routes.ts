@@ -29,6 +29,11 @@ export class RoutesPage {
     this.routes = this.routesProvider.getItems(this.location.id);
   }
 
+  getItems(ev: any) {
+    let val = ev.target.value;
+    this.routes = this.routesProvider.getItemsFilteredByName(this.location.id, val);
+  }
+
   edit(route: Route) {
     this.navCtrl.push(RouteDetailPage, { "id": route.id, "location": this.location })
   }

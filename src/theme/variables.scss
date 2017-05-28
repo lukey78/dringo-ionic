@@ -38,7 +38,8 @@ $colors: (
         secondary:  #3891a6,
         danger:     #db5461,
         light:      #fde74c,
-        dark:       #23395b
+        dark:       #23395b,
+        inputBackground: #303030
 );
 
 
@@ -46,12 +47,25 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+$searchbar-ios-input-background-color: color($colors, inputBackground);
+$searchbar-ios-input-placeholder-color: #aaaaaa;
+$searchbar-ios-input-text-color: white;
+$searchbar-ios-input-clear-icon-color: #aaaaaa;
+$searchbar-ios-input-cancel-icon-color: #aaaaaa;
+$searchbar-ios-input-search-icon-color: #aaaaaa;
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+$searchbar-md-input-background-color: $searchbar-ios-input-background-color;
+$searchbar-md-input-placeholder-color: $searchbar-ios-input-placeholder-color;
+$searchbar-md-input-text-color: $searchbar-ios-input-text-color;
+$searchbar-md-input-clear-icon-color: $searchbar-ios-input-clear-icon-color;
+$searchbar-md-input-cancel-icon-color: $searchbar-ios-input-cancel-icon-color;
+$searchbar-md-input-search-icon-color: $searchbar-ios-input-search-icon-color;
+$searchbar-md-input-border-radius: 0px;
 
 
 
