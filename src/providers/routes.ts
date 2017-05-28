@@ -36,8 +36,12 @@ export class RoutesProvider {
   }
 
   getItemsFilteredByName(locationId: string, searchTerm: string): Observable<Route[]> {
-    this.locationSubject.next(locationId);
-    return this.items.map(data => data.filter(item => item.nameCanonical.indexOf(searchTerm.toLowerCase()) > -1)).map(Route.fromJsonList);
+    if (searchTerm.length > 0) {
+      this.locationSubject.next(locationId);
+      return this.items.map(data => data.filter(item => item.nameCanonical.indexOf(searchTerm.toLowerCase()) > -1)).map(Route.fromJsonList);
+    } else {
+      return this.getItems(locationId);
+    }
   }
 
   /** there's no simple way to just query the count, so we query all and return the count... pff
