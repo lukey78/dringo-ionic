@@ -1,3 +1,5 @@
+import {Md5} from 'ts-md5/dist/md5';
+
 export class User {
 
     private nameCanonical: string;
@@ -19,7 +21,7 @@ export class User {
     }
 
     static fromLoginData(data: firebase.User) {
-        return new User(data.uid, data.displayName, data.email, "", "de", "de", data.photoURL);
+        return new User(Md5.hashStr(data.email).toString(), data.displayName, data.email, "", "de", "de", data.photoURL);
     }
 
     public updateAfterLogin(data: firebase.User) {
@@ -36,7 +38,7 @@ export class User {
     }
 
     static fromJson({$key, name, email, city, country, language, imageUrl}):User {
-        return new User($key, name, email, city ? city : "", country, language, imageUrl);
+        return new User(Md5.hashStr(email).toString(), name, email, city ? city : "", country, language, imageUrl);
     }
 
     public isAnonymous() {

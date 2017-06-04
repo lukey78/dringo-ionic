@@ -5,9 +5,11 @@ import { Platform } from 'ionic-angular';
 import * as firebase from 'firebase/app';
 import { auth } from 'firebase'; //needed for the GoogleAuthProvider
 import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
 import {UserProvider} from "./users";
 import {User} from "../models/user";
 import {TranslateService} from "@ngx-translate/core";
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable()
 export class AuthService {
@@ -16,12 +18,12 @@ export class AuthService {
   private currentUser: Observable<User>;
   private loadedUser: User;
 
-  constructor(public afAuth: AngularFireAuth, private platform: Platform, private gplus: GooglePlus, private userProvider: UserProvider, private translator: TranslateService) {
+  constructor(public afAuth: AngularFireAuth, private platform: Platform, private gplus: GooglePlus, private fb: Facebook, private userProvider: UserProvider, private translator: TranslateService) {
     this.userObservable = afAuth.authState;
     this.userObservable.subscribe(user => {
       if (user) {
         this.userProvider.updateOrCreateItemOnLogin(user);
-        this.currentUser = this.userProvider.getItem(user.uid);
+        this.currentUser = this.userProvider.getItem(user.email);
         this.currentUser.subscribe(appUser => {
           this.loadedUser = appUser;
           this.translator.use(appUser.language);
@@ -34,22 +36,128 @@ export class AuthService {
     return this.afAuth.auth.signInAnonymously();
   }
 
-  signInWithGoogle(): firebase.Promise<any> {
-    if (this.platform.is('cordova')) {
+  signInWithGoogle(): Promise<any> {
+    let me = this;
 
-      return this.gplus.login({
-        'webClientId':'511139085903-lja3jpnm65jb0lpss6csmglp8c8s0da1.apps.googleusercontent.com'
-      }).then(userData => {
-        const googleCredential = auth.GoogleAuthProvider.credential(userData.idToken, null);
-        return this.afAuth.auth.signInWithCredential(googleCredential);
-      }).catch(error => {
-        console.log(error);
-      });
+    return new Promise((resolve, reject) => {
 
-    } else {
-      return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    }
+      if (this.platform.is('cordova')) {
+
+        return this.gplus.login({
+          'webClientId': '511139085903-lja3jpnm65jb0lpss6csmglp8c8s0da1.apps.googleusercontent.com'
+        }).then(userData => {
+          const googleCredential = auth.GoogleAuthProvider.credential(userData.idToken, null);
+          return this.afAuth.auth.signInWithCredential(googleCredential);
+        }, err => {
+          let error: any = err;
+
+          let email = error.email;
+          let credential = error.credential;
+
+          if (error.code === 'auth/account-exists-with-different-credential') {
+            me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
+              if (providers.indexOf('google.com') !== -1) {
+                reject(me.translator.instant('welcome.error.emailAlreadyWithFacebook'));
+              } else {
+                reject(me.translator.instant('welcome.error.authProblem'));
+              }
+            });
+          } else {
+            reject(me.translator.instant('welcome.error.authProblem'));
+          }
+
+        });
+
+      } else {
+        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+          .then(function (result) {
+            resolve(result);
+          }, function (err) {
+            let error: any = err;
+
+            let email = error.email;
+            let credential = error.credential;
+
+            if (error.code === 'auth/account-exists-with-different-credential') {
+              me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
+                console.log(providers);
+                if (providers.indexOf('facebook,com') !== -1) {
+                  reject(me.translator.instant('welcome.error.emailAlreadyWithFacebook'));
+                } else {
+                  reject(me.translator.instant('welcome.error.authProblem'));
+                }
+              });
+            } else {
+              reject(me.translator.instant('welcome.error.authProblem'));
+            }
+          })
+      }
+
+    });
   }
+
+  signInWithFacebook(): Promise<any> {
+    let me = this;
+
+    return new Promise((resolve, reject) => {
+
+      if (this.platform.is('cordova')) {
+
+        this.fb.login(['email', 'public_profile']).then(res => {
+          const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+          return firebase.auth().signInWithCredential(facebookCredential).then(res => {
+            resolve(res);
+          }, err => {
+            let error: any = err;
+
+            let email = error.email;
+            let credential = error.credential;
+
+            if (error.code === 'auth/account-exists-with-different-credential') {
+              me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
+                if (providers.indexOf('google.com') !== -1) {
+                  reject(me.translator.instant('welcome.error.emailAlreadyWithGoogle'));
+                } else {
+                  reject(me.translator.instant('welcome.error.authProblem'));
+                }
+              });
+            } else {
+              reject(me.translator.instant('welcome.error.authProblem'));
+            }
+          });
+        }, err => {
+          reject(me.translator.instant('welcome.error.authProblem'));
+        })
+
+      } else {
+
+        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+          .then(function (result) {
+            resolve(result);
+          }, function (err) {
+            console.log(err);
+
+            let error: any = err;
+
+            let email = error.email;
+            let credential = error.credential;
+
+            if (error.code === 'auth/account-exists-with-different-credential') {
+              me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
+                if (providers.indexOf('google.com') !== -1) {
+                  reject(me.translator.instant('welcome.error.emailAlreadyWithGoogle'));
+                } else {
+                  reject(me.translator.instant('welcome.error.authProblem'));
+                }
+              });
+            } else {
+              reject(me.translator.instant('welcome.error.authProblem'));
+            }
+          })
+      }
+    });
+  }
+
 
   // currently not used
   linkWithGoogle(): firebase.Promise<any> {
@@ -104,10 +212,6 @@ export class AuthService {
     return this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
   }
 
-  signInWithFacebook(): firebase.Promise<any> {
-    return this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
-  }
-
   signInWithUserAndPassword(): firebase.Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword("test@test.ch", "testpass");
   }
@@ -125,7 +229,7 @@ export class AuthService {
   }
 
   getUserId(): string {
-    return this.loadedUser ? this.loadedUser.id : "";
+    return this.loadedUser ? Md5.hashStr(this.loadedUser.email).toString() : "";
   }
 
   getUserName(): string {

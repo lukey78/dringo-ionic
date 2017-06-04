@@ -37,6 +37,22 @@ export class LoginPage {
     })
   }
 
+  presentError(title: string, message: string, okHandler: Function) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: this.translator.instant('controls.ok'),
+          handler: () => {
+            okHandler()
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   presentConfirm(title: string, message: string, okHandler: Function) {
     let alert = this.alertCtrl.create({
       title: title,
@@ -71,14 +87,28 @@ export class LoginPage {
     this.auth.signInWithGoogle().then(function() {
       loading.dismiss();
       me.navCtrl.setRoot(TabsPage);
+    }, function(errorMessage) {
+      loading.dismiss();
+      me.presentError(me.translator.instant('welcome.loginGoogle'), errorMessage, function() {});
     });
   }
 
 
   loginWithFacebook() {
     let me = this;
-    this.auth.signInWithFacebook().then(function() {
+
+    let loading = this.loadingCtrl.create({
+      content: this.translator.instant('controls.pleaseWait')
+    });
+
+    loading.present();
+
+    this.auth.signInWithFacebook().then(function(result) {
+      loading.dismiss();
       me.navCtrl.setRoot(TabsPage);
+    }, function(errorMessage) {
+      loading.dismiss();
+      me.presentError(me.translator.instant('welcome.loginFacebook'), errorMessage, function() {});
     });
   }
 

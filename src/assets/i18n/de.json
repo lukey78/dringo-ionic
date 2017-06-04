@@ -18,7 +18,12 @@
         "loginAnon": "Anonym ausprobieren",
         "anonInfo": "Wenn du anonym bist, kannst du bestehende Routen klettern, aber keine neuen Orte oder Routen selbst erstellen. Du kannst dein anonymes Konto aber jederzeit in ein richtiges umwandeln.",
         "loginGoogle": "Mit Google anmelden",
-        "loginFacebook": "Mit Facebook anmelden"
+        "loginFacebook": "Mit Facebook anmelden",
+        "error": {
+            "authProblem": "Es gab leider ein Problem bei der Anmeldung. Bitte probiere es noch einmal, vielleicht mit einer anderen Methode.",
+            "emailAlreadyWithGoogle": "Du hast dich an der App bereits mit Google angemeldet. Wenn du dich auch mit Facebook einloggen möchtest, kannst du Facebook in deinem Profil hinzufügen.",
+            "emailAlreadyWithFacebook": "Du hast dich an der App bereits mit Facebook angemeldet. Wenn du dich auch mit Google einloggen möchtest, kannst du Google in deinem Profil hinzufügen."
+        }
     },
     "field": {
         "country": {

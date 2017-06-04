@@ -53,7 +53,7 @@ export class ProfilePage {
   save() {
     if (this.editForm.valid) {
       this.user.updateFromForm(this.editForm.value);
-      this.userProvider.updateItem(this.user.id, this.user);
+      this.userProvider.updateItem(this.user.email, this.user);
       this.viewCtrl.dismiss();
       this.translator.use(this.user.language);
     }

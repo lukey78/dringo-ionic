@@ -33,6 +33,7 @@ import {HomeModule} from "../pages/home/home.module";
 import {GooglePlus} from "@ionic-native/google-plus";
 import {RoutesProvider} from "../providers/routes";
 import {RatingsProvider} from "../providers/ratings";
+import {Facebook} from "@ionic-native/facebook";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -91,6 +92,7 @@ export const firebaseConfig = {
     RatingsProvider,
     UserProvider,
     GooglePlus,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

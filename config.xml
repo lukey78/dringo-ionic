@@ -80,6 +80,10 @@
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="1825668644427707" />
+        <variable name="APP_NAME" value="dringo" />
+    </plugin>
     <plugin name="cordova-plugin-googleplus" spec="^5.1.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.511139085903-46b5cc7aq86mncomd54peajlppn3d5jp" />
     </plugin>
