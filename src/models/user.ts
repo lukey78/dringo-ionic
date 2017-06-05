@@ -1,4 +1,5 @@
 import {Md5} from 'ts-md5/dist/md5';
+import {Location} from "./location";
 
 export class User {
 
@@ -11,17 +12,18 @@ export class User {
         public city: string,
         public country: string,
         public language: string,
-        public imageUrl: string
+        public imageUrl: string,
+        public currentLocation: string
     ) {
         this.updateCanonicals();
     }
 
     static fromNone() {
-        return new User("", "", "", "", "", "", "");
+        return new User("", "", "", "", "", "", "", null);
     }
 
     static fromLoginData(data: firebase.User) {
-        return new User(Md5.hashStr(data.email).toString(), data.displayName, data.email, "", "de", "de", data.photoURL);
+        return new User(Md5.hashStr(data.email).toString(), data.displayName, data.email, "", "de", "de", data.photoURL, null);
     }
 
     public updateAfterLogin(data: firebase.User) {
@@ -37,8 +39,16 @@ export class User {
         this.updateCanonicals();
     }
 
-    static fromJson({$key, name, email, city, country, language, imageUrl}):User {
-        return new User(Md5.hashStr(email).toString(), name, email, city ? city : "", country, language, imageUrl);
+    static fromJson({$key, name, email, city, country, language, imageUrl, currentLocation}):User {
+        return new User(Md5.hashStr(email).toString(), name, email, city ? city : "", country, language, imageUrl, currentLocation ? currentLocation : null);
+    }
+    
+    public updateCurrentLocation(loc: Location) {
+        this.currentLocation = loc.id;
+    }
+
+    public getCurrentLocation() {
+        return this.currentLocation;
     }
 
     public isAnonymous() {

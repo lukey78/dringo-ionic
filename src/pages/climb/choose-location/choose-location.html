@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="secondary" hideBackButton="true">
+    <ion-title>{{ 'location.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let loc of locations | async" (click)="choose(loc)">
+      <ion-icon name="navigate-outline" item-left></ion-icon>
+      <ion-icon [style.visibility]="loc.indoor === true ? 'visible' : 'hidden'" name="home" item-left></ion-icon>
+      <h2>{{ loc.name }}</h2>
+      <p>{{ loc.city }}</p>
+    </button>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      <button color="secondary" ion-button full (click)="cancel()">
+        {{ 'controls.cancel' | translate }}
+      </button>
+  </ion-toolbar>
+</ion-footer>

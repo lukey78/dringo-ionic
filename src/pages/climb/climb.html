@@ -6,5 +6,16 @@
 
 
 <ion-content padding>
+  <div class="location">
+    <button ion-item (click)="changeLocation()" color="primary">
+      <ion-icon name="navigate-outline" item-left></ion-icon>
+      {{ currentLocation?.name ? currentLocation?.name : 'climb.chooseLocation' | translate }}
+    </button>
+
+    <button ion-item block full (click)="addClimb()" color="primary" [style.visibility]="currentLocation  ? 'visible' : 'hidden'">
+      <ion-icon name="climber" item-left></ion-icon>
+      {{ 'climb.addClimb' | translate }}
+    </button>
+  </div>
 
 </ion-content>

@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import {ClimbPage} from "./climb";
-import {ChooseLocationModule} from "./choose-location/choose-location.module";
+
+import {ChooseLocationPage} from "./choose-location";
 
 @NgModule({
   declarations: [
-    ClimbPage,
+    ChooseLocationPage
   ],
   imports: [
-    ChooseLocationModule,
-    IonicPageModule.forChild(ClimbPage),
+    IonicPageModule.forChild(ChooseLocationPage),
     TranslateModule.forChild()
   ],
   exports: [
-    ClimbPage
+    ChooseLocationPage
   ]
 })
-export class ClimbModule {}
+export class ChooseLocationModule {}
