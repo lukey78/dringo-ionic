@@ -7,6 +7,7 @@ import { Location } from '../models/location';
 import { AuthService } from "./auth-service";
 
 import { AfoListObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
+import {RoutesProvider} from "./routes";
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class LocationsProvider {
 
   items: AfoListObservable<any>;
 
-  constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService) {
+  constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService, private routesProvider: RoutesProvider) {
     this.items = this.db.list('/locations', {
       query: {
         orderByChild: 'nameCanonical'
@@ -41,6 +42,7 @@ export class LocationsProvider {
   }
 
   deleteItem(key: string) {
+    this.routesProvider.deleteForLocation(key);
     this.items.remove(key);
   }
 

@@ -19,7 +19,10 @@ export class LocationsPage {
   locations: Observable<Location[]>;
 
   constructor(private navCtrl: NavController, public navParams: NavParams,  private modalCtrl: ModalController, private locationsProvider: LocationsProvider) {
-    this.locations = locationsProvider.getItems();
+  }
+
+  ionViewDidEnter() {
+    this.locations = this.locationsProvider.getItems();
   }
   
   edit(location: Location) {

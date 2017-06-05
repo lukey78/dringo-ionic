@@ -75,6 +75,23 @@ export class RoutesProvider {
     this.items.remove(key);
   }
 
+  deleteForLocation(locationKey: string) {
+    let me = this;
+
+    let itemsToDelete = this.db.list('/routes', {
+      query: {
+        orderByChild: 'locationId',
+        equalTo: locationKey
+      }
+    });
+
+    itemsToDelete.first().subscribe(function(res) {
+      res.forEach(route => {
+        me.db.object(route.$key).remove();
+      });
+    });
+  }
+
   deleteEverything() {
     this.items.remove();
   }
