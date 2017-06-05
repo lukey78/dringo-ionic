@@ -58,7 +58,6 @@
     },
     "dashboard": {
         "profile": "Profil",
-        "chooseLocation": "Wähle einen Ort zum Klettern",
         "climb": "Klettern",
         "stats": "Auswerten"
     },
@@ -97,6 +96,15 @@
             "active": "Aktiv?"
         },
         "inactiveInfo": "Diese Route ist leider nicht mehr aktiv. Wenn dies nicht zutrifft, dann bearbeite die Route und aktiviere Sie erneut."
+    },
+    "climb": {
+        "title": "Klettern",
+        "currentLocation": "Aktueller Ort",
+        "changeLocation": "Anderen Ort wählen",
+        "chooseLocation": "Wähle einen Ort zum Klettern"
+    },
+    "stats": {
+        "title": "Statistiken"
     }
 
 }

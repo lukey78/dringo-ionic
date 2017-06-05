@@ -34,6 +34,10 @@ import {GooglePlus} from "@ionic-native/google-plus";
 import {RoutesProvider} from "../providers/routes";
 import {RatingsProvider} from "../providers/ratings";
 import {Facebook} from "@ionic-native/facebook";
+import {ClimbModule} from "../pages/climb/climb.module";
+import {ClimbPage} from "../pages/climb/climb";
+import {StatsModule} from "../pages/stats/stats.module";
+import {StatsPage} from "../pages/stats/stats";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -73,6 +77,8 @@ export const firebaseConfig = {
 
     LoginModule,
     LocationsModule,
+    ClimbModule,
+    StatsModule,
     HomeModule
   ],
   bootstrap: [IonicApp],
@@ -81,6 +87,8 @@ export const firebaseConfig = {
     LoginPage,
     HomePage,
     LocationsPage,
+    ClimbPage,
+    StatsPage,
     TabsPage
   ],
   providers: [
