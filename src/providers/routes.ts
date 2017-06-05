@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
-import { Location } from '../models/location';
 import { Route } from '../models/route';
 import { AuthService } from "./auth-service";
 

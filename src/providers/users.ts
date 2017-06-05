@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 
 import { User } from '../models/user';
 
-import { AfoObjectObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
-import {Md5} from 'ts-md5/dist/md5';
+import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable()
 export class UserProvider {

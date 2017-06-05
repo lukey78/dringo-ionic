@@ -3,7 +3,6 @@ import {ModalController, NavController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
 import {ProfilePage} from "../profile/profile";
 import {User} from "../../models/user";
-import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'page-home',

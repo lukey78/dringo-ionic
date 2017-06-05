@@ -36,6 +36,27 @@ export class AuthService {
     return this.afAuth.auth.signInAnonymously();
   }
 
+  handleError(err, rejectFn) {
+    let me = this;
+    let error: any = err;
+
+    let email = error.email;
+
+    if (error.code === 'auth/account-exists-with-different-credential') {
+      this.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
+        if (providers.indexOf('facebook.com') !== -1) {
+          rejectFn(me.translator.instant('welcome.error.emailAlreadyWithFacebook'));
+        } else if (providers.indexOf('google.com') !== -1) {
+          rejectFn(me.translator.instant('welcome.error.emailAlreadyWithGoogle'));
+        } else {
+          rejectFn(me.translator.instant('welcome.error.authProblem'));
+        }
+      });
+    } else {
+      rejectFn(me.translator.instant('welcome.error.authProblem'));
+    }
+  }
+
   signInWithGoogle(): Promise<any> {
     let me = this;
 
@@ -47,25 +68,13 @@ export class AuthService {
           'webClientId': '511139085903-lja3jpnm65jb0lpss6csmglp8c8s0da1.apps.googleusercontent.com'
         }).then(userData => {
           const googleCredential = auth.GoogleAuthProvider.credential(userData.idToken, null);
-          return this.afAuth.auth.signInWithCredential(googleCredential);
+          this.afAuth.auth.signInWithCredential(googleCredential).then(res => {
+            resolve(res);
+          }, err => {
+            me.handleError(err, reject);
+          });
         }, err => {
-          let error: any = err;
-
-          let email = error.email;
-          let credential = error.credential;
-
-          if (error.code === 'auth/account-exists-with-different-credential') {
-            me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
-              if (providers.indexOf('google.com') !== -1) {
-                reject(me.translator.instant('welcome.error.emailAlreadyWithFacebook'));
-              } else {
-                reject(me.translator.instant('welcome.error.authProblem'));
-              }
-            });
-          } else {
-            reject(me.translator.instant('welcome.error.authProblem'));
-          }
-
+          reject(me.translator.instant('welcome.error.authProblem'));
         });
 
       } else {
@@ -73,23 +82,7 @@ export class AuthService {
           .then(function (result) {
             resolve(result);
           }, function (err) {
-            let error: any = err;
-
-            let email = error.email;
-            let credential = error.credential;
-
-            if (error.code === 'auth/account-exists-with-different-credential') {
-              me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
-                console.log(providers);
-                if (providers.indexOf('facebook,com') !== -1) {
-                  reject(me.translator.instant('welcome.error.emailAlreadyWithFacebook'));
-                } else {
-                  reject(me.translator.instant('welcome.error.authProblem'));
-                }
-              });
-            } else {
-              reject(me.translator.instant('welcome.error.authProblem'));
-            }
+            me.handleError(err, reject);
           })
       }
 
@@ -105,25 +98,10 @@ export class AuthService {
 
         this.fb.login(['email', 'public_profile']).then(res => {
           const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-          return firebase.auth().signInWithCredential(facebookCredential).then(res => {
+          firebase.auth().signInWithCredential(facebookCredential).then(res => {
             resolve(res);
           }, err => {
-            let error: any = err;
-
-            let email = error.email;
-            let credential = error.credential;
-
-            if (error.code === 'auth/account-exists-with-different-credential') {
-              me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
-                if (providers.indexOf('google.com') !== -1) {
-                  reject(me.translator.instant('welcome.error.emailAlreadyWithGoogle'));
-                } else {
-                  reject(me.translator.instant('welcome.error.authProblem'));
-                }
-              });
-            } else {
-              reject(me.translator.instant('welcome.error.authProblem'));
-            }
+            me.handleError(err, reject);
           });
         }, err => {
           reject(me.translator.instant('welcome.error.authProblem'));
@@ -135,24 +113,7 @@ export class AuthService {
           .then(function (result) {
             resolve(result);
           }, function (err) {
-            console.log(err);
-
-            let error: any = err;
-
-            let email = error.email;
-            let credential = error.credential;
-
-            if (error.code === 'auth/account-exists-with-different-credential') {
-              me.afAuth.auth.fetchProvidersForEmail(email).then(function (providers) {
-                if (providers.indexOf('google.com') !== -1) {
-                  reject(me.translator.instant('welcome.error.emailAlreadyWithGoogle'));
-                } else {
-                  reject(me.translator.instant('welcome.error.authProblem'));
-                }
-              });
-            } else {
-              reject(me.translator.instant('welcome.error.authProblem'));
-            }
+            me.handleError(err, reject);
           })
       }
     });
@@ -166,45 +127,9 @@ export class AuthService {
     return this.afAuth.auth.currentUser.linkWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(function(result) {
         console.log("linked successfully", result);
-
-        let newUserInfo = result.user.providerData[0];
-        me.afAuth.auth.currentUser.updateEmail(newUserInfo.email);
-        me.afAuth.auth.currentUser.updateProfile({
-          "displayName": newUserInfo.displayName,
-          "photoURL": newUserInfo.photoURL
-        });
-
       }, function(err) {
         let error: any = err;
         console.log(error);
-
-        let credential = error.credential;
-
-        var prevUser = me.afAuth.auth.currentUser;
-        // Sign in user with another account
-
-        me.afAuth.auth.signInWithCredential(credential).then(function(user) {
-          console.log("Sign In Success", user);
-          let currentUser = user;
-          // Merge prevUser and currentUser data stored in Firebase.
-          // Note: How you handle this is specific to your application
-          prevUser.updateProfile({
-            "displayName": user.displayName,
-            "photoURL": user.photoURL
-          });
-
-          // After data is migrated delete the duplicate user
-          return user.delete().then(function() {
-            // Link the OAuth Credential to original account
-            return prevUser.link(credential);
-          }).then(function() {
-            // Sign in with the newly linked credential
-            return me.afAuth.auth.signInWithCredential(credential);
-          });
-        }).catch(function(error) {
-          console.log("Sign In Error", error);
-        });
-
       });
   }
 

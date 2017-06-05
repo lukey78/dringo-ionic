@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginPage} from "../login/login";
 import {UserProvider} from "../../providers/users";
 import {User} from "../../models/user";
-import {Observable} from "rxjs/Observable";
 import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
