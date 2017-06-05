@@ -12,8 +12,31 @@
       {{ currentLocation?.name ? currentLocation?.name : 'climb.chooseLocation' | translate }}
     </button>
 
-    <button ion-item block full (click)="addClimb()" color="primary" [style.visibility]="currentLocation  ? 'visible' : 'hidden'">
+    <button ion-item block full (click)="chooseRoute()" color="primary" [style.visibility]="currentLocation  ? 'visible' : 'hidden'">
       <ion-icon name="climber" item-left></ion-icon>
+      {{ currentRoute?.name ? currentRoute?.name : 'climb.chooseRoute' | translate }}
+    </button>
+  </div>
+
+  <div class="route-details" [style.display]="currentRoute ? 'block' : 'none'">
+    <ion-list>
+      <ion-item>
+        {{ 'route.field.sector' | translate }}:
+        {{ currentRoute?.sector }}
+      </ion-item>
+
+      <ion-item>
+        {{ 'route.field.builder' | translate }}:
+        {{ currentRoute?.builder }}
+      </ion-item>
+
+      <ion-item>
+        {{ 'route.field.rating' | translate }}:
+        {{ rating?.french }} | {{ rating?.uiaa}} | {{ rating?.usa }}
+      </ion-item>
+    </ion-list>
+
+    <button ion-button block full (click)="addClimb()">
       {{ 'climb.addClimb' | translate }}
     </button>
   </div>

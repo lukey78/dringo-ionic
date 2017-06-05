@@ -63,7 +63,7 @@ export class RatingsProvider {
   }
 
   getItem(key: number): Rating {
-    return this.items[key];
+    return this.items[key-1];
   }
 
 }

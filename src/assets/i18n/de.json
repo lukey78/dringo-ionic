@@ -102,7 +102,8 @@
         "currentLocation": "Aktueller Ort",
         "changeLocation": "Ort auswählen",
         "chooseLocation": "Wähle einen Ort zum Klettern",
-        "addClimb": "Gekletterte Route eintragen"
+        "chooseRoute": "Route auswählen",
+        "addClimb": "Begehung eintragen"
     },
     "stats": {
         "title": "Statistiken"
