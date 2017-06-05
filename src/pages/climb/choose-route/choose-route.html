@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ 'route.title' | translate }} ({{ (routes | async)?.length }})</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'controls.search' | translate }}"></ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let route of routes | async" (click)="choose(route)" [ngClass]="route.active === false ? 'inactive' : ''">
+      <ion-icon name="climber" item-left [style.visibility]="route.active === false ? 'hidden' : 'visible'"></ion-icon>
+      <div>
+        {{ route.name }}
+<!--
+        <br>
+        <span class="subtitle">
+          <span [style.visibility]="route.sector.length > 0 ? 'visible' : 'hidden'">{{ route.sector }}</span>
+          <span [style.visibility]="route.sector.length > 0 && route.builder.length > 0? 'visible' : 'hidden'"> | </span>
+          <span [style.visibility]="route.builder.length > 0 ? 'visible' : 'hidden'">von {{ route.builder }}</span>
+        </span>
+-->
+      </div>
+      <ion-badge color="primary" item-right>{{ ratingsProvider.getItem(route.ratingId).french }}</ion-badge>
+    </button>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="add()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button color="secondary" ion-button full (click)="cancel()">
+      {{ 'controls.cancel' | translate }}
+    </button>
+  </ion-toolbar>
+</ion-footer>

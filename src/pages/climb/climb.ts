@@ -7,6 +7,7 @@ import {User} from "../../models/user";
 import {UserProvider} from "../../providers/users";
 import {LocationsProvider} from "../../providers/locations";
 import {Location} from "../../models/location";
+import {ChooseRoutePage} from "./choose-route/choose-route";
 
 @IonicPage()
 @Component({
@@ -49,6 +50,13 @@ export class ClimbPage {
   }
 
   addClimb() {
+    let chooseModal = this.modalCtrl.create(ChooseRoutePage, { "location": this.currentLocation });
+    chooseModal.present();
+
+    chooseModal.onDidDismiss(chosenRoute => {
+      if (chosenRoute) {
+      }
+    });
 
   }
 
