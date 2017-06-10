@@ -1,98 +1,99 @@
 {
-    "name": "dringo",
-    "version": "0.0.1",
-    "author": "Jens Hassler",
-    "homepage": "http://dringo-app.com/",
-    "private": true,
-    "scripts": {
-        "clean": "ionic-app-scripts clean",
-        "build": "ionic-app-scripts build",
-        "ionic:build": "ionic-app-scripts build",
-        "ionic:serve": "ionic-app-scripts serve"
-    },
-    "dependencies": {
-        "@angular/animations": "4.1.0",
-        "@angular/common": "4.1.0",
-        "@angular/compiler": "4.1.0",
-        "@angular/compiler-cli": "4.1.0",
-        "@angular/core": "4.1.0",
-        "@angular/forms": "4.1.0",
-        "@angular/http": "4.1.0",
-        "@angular/platform-browser": "4.1.0",
-        "@angular/platform-browser-dynamic": "4.1.0",
-        "@ionic-native/core": "3.6.1",
-        "@ionic-native/facebook": "^3.12.1",
-        "@ionic-native/google-plus": "^3.7.0",
-        "@ionic-native/splash-screen": "3.6.1",
-        "@ionic-native/status-bar": "3.6.1",
-        "@ionic/storage": "2.0.1",
-        "@ngx-translate/core": "^6.0.1",
-        "@ngx-translate/http-loader": "0.0.3",
-        "angular-md5": "^0.1.10",
-        "angularfire2": "^4.0.0-rc.0",
-        "angularfire2-offline": "^4.0.1",
-        "animate.css": "^3.5.2",
-        "bufferutil": "^1.0.0",
-        "cordova-android": "^6.2.3",
-        "cordova-plugin-console": "1.0.5",
-        "cordova-plugin-device": "1.1.4",
-        "cordova-plugin-facebook4": "^1.9.1",
-        "cordova-plugin-googleplus": "^5.1.1",
-        "cordova-plugin-splashscreen": "~4.0.1",
-        "cordova-plugin-statusbar": "2.2.1",
-        "cordova-plugin-whitelist": "1.3.1",
-        "firebase": "^3.9.0",
-        "flag-icon-css": "^2.8.0",
-        "install": "^0.9.6",
-        "ionic-angular": "3.2.0",
-        "ionic-plugin-keyboard": "~2.2.1",
-        "ionicons": "3.0.0",
-        "npm": "^4.5.0",
-        "rxjs": "5.1.1",
-        "sw-toolbox": "3.6.0",
-        "ts-md5": "^1.2.0",
-        "utf-8-validate": "^3.0.1",
-        "zone.js": "0.8.10"
-    },
-    "devDependencies": {
-        "@ionic/app-scripts": "1.3.7",
-        "typescript": "2.2.1"
-    },
-    "cordovaPlugins": [
-        "cordova-plugin-whitelist",
-        "cordova-plugin-console",
-        "cordova-plugin-statusbar",
-        "cordova-plugin-device",
-        "cordova-plugin-splashscreen",
-        "ionic-plugin-keyboard"
-    ],
-    "cordovaPlatforms": [
-        "ios",
-        {
-            "platform": "ios",
-            "version": "",
-            "locator": "ios"
-        }
-    ],
-    "description": "dringo: die Kletter-App",
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-console": {},
-            "cordova-plugin-device": {},
-            "cordova-plugin-splashscreen": {},
-            "cordova-plugin-statusbar": {},
-            "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {},
-            "cordova-plugin-googleplus": {
-                "REVERSED_CLIENT_ID": "com.googleusercontent.apps.511139085903-46b5cc7aq86mncomd54peajlppn3d5jp"
-            },
-            "cordova-plugin-facebook4": {
-                "APP_ID": "1825668644427707",
-                "APP_NAME": "dringo"
-            }
-        },
-        "platforms": [
-            "android"
-        ]
+  "name": "dringo",
+  "version": "0.0.1",
+  "author": "Jens Hassler",
+  "homepage": "http://dringo-app.com/",
+  "private": true,
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve"
+  },
+  "dependencies": {
+    "@angular/animations": "4.1.2",
+    "@angular/common": "4.1.2",
+    "@angular/compiler": "4.1.2",
+    "@angular/compiler-cli": "4.1.2",
+    "@angular/core": "4.1.2",
+    "@angular/forms": "4.1.2",
+    "@angular/http": "4.1.2",
+    "@angular/platform-browser": "4.1.2",
+    "@angular/platform-browser-dynamic": "4.1.2",
+    "@ionic-native/core": "3.6.1",
+    "@ionic-native/facebook": "^3.12.1",
+    "@ionic-native/google-plus": "^3.7.0",
+    "@ionic-native/splash-screen": "3.6.1",
+    "@ionic-native/status-bar": "3.6.1",
+    "@ionic/storage": "2.0.1",
+    "@ngx-translate/core": "^6.0.1",
+    "@ngx-translate/http-loader": "0.0.3",
+    "angular-md5": "^0.1.10",
+    "angularfire2": "^4.0.0-rc.0",
+    "angularfire2-offline": "^4.0.1",
+    "animate.css": "^3.5.2",
+    "bufferutil": "^1.0.0",
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-facebook4": "^1.9.1",
+    "cordova-plugin-googleplus": "^5.1.1",
+    "cordova-plugin-splashscreen": "~4.0.1",
+    "cordova-plugin-statusbar": "2.2.1",
+    "cordova-plugin-whitelist": "1.3.1",
+    "firebase": "^3.9.0",
+    "flag-icon-css": "^2.8.0",
+    "install": "^0.9.6",
+    "ionic-angular": "3.3.0",
+    "ionic-plugin-keyboard": "~2.2.1",
+    "ionic2-rating": "^1.2.2",
+    "ionicons": "3.0.0",
+    "npm": "^4.5.0",
+    "rxjs": "5.1.1",
+    "sw-toolbox": "3.6.0",
+    "ts-md5": "^1.2.0",
+    "utf-8-validate": "^3.0.1",
+    "zone.js": "0.8.10"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "1.3.7",
+    "typescript": "2.3.3"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-whitelist",
+    "cordova-plugin-console",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": [
+    "ios",
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
     }
+  ],
+  "description": "dringo: die Kletter-App",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.511139085903-46b5cc7aq86mncomd54peajlppn3d5jp"
+      },
+      "cordova-plugin-facebook4": {
+        "APP_ID": "1825668644427707",
+        "APP_NAME": "dringo"
+      }
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }

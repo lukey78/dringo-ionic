@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ 'climb.addClimb' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="editForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>{{ 'climb.field.date' | translate }}</ion-label>
+        <ion-datetime formControlName="datetime" displayFormat="DD.MM.YYYY" pickerFormat="YYYY-MM-DD" [class.invalid]="!editForm.controls.datetime.valid && (editForm.controls.datetime.dirty || submitAttempt)"></ion-datetime>
+      </ion-item>
+
+      <ion-list-header color="secondary">
+        {{ 'climb.field.style.title' | translate}}
+        <ion-icon item-right name="help-circle" (click)="openStyleHelp()"></ion-icon>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-segment formControlName="style" color="secondary" [class.invalidBorder]="!editForm.controls.style.valid && (editForm.controls.style.dirty || submitAttempt)">
+          <ion-segment-button value="1">
+            <ion-icon name="eye"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="2" id="default-style">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="3">
+            <ion-icon name="construct"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+
+        <ion-item *ngIf="!editForm.controls.style.valid && (editForm.controls.style.dirty || submitAttempt)">
+          <span class="invalid-message">{{ 'climb.field.error.style' | translate }}</span>
+        </ion-item>
+
+        <ion-item *ngIf="editForm.controls.style.value == 1">
+          {{ 'climb.field.style.onsight' | translate }}
+        </ion-item>
+
+        <ion-item *ngIf="editForm.controls.style.value == 2">
+          {{ 'climb.field.style.redpoint' | translate }}
+        </ion-item>
+
+        <ion-item *ngIf="editForm.controls.style.value == 3">
+          {{ 'climb.field.style.attempt' | translate }}
+          <ion-segment formControlName="blocks" color="secondary">
+            <ion-segment-button value="1">
+              1
+            </ion-segment-button>
+            <ion-segment-button value="2">
+              2
+            </ion-segment-button>
+            <ion-segment-button value="3">
+              3
+            </ion-segment-button>
+            <ion-segment-button value="4">
+              4
+            </ion-segment-button>
+            <ion-segment-button value="5">
+              &gt; 4
+            </ion-segment-button>
+            <ion-segment-button value="99">
+              <ion-icon name="sad"></ion-icon>
+            </ion-segment-button>
+          </ion-segment>
+
+          <ion-item *ngIf="!editForm.valid && (editForm.controls.blocks.dirty || submitAttempt)">
+            <span class="invalid-message">{{ 'climb.field.error.blocks' | translate }}</span>
+          </ion-item>
+        </ion-item>
+      </ion-item>
+
+
+      <ion-list-header color="secondary">{{ 'climb.field.myRatingHeader' | translate}}</ion-list-header>
+
+      <ion-item>
+        <ion-label floating>{{ 'climb.field.realRating' | translate}}</ion-label>
+        <ion-select formControlName="realRatingId" [class.invalid]="!editForm.controls.realRatingId.valid && (editForm.controls.realRating.dirty || submitAttempt)">
+          <ion-option *ngFor="let rating of realRatings" value="{{ rating.id }}">
+            {{ rating.french }} |
+            UIAA: {{ rating.uiaa }} |
+            USA: {{ rating.usa }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <rating nullable="true" formControlName="rating" [class.invalid]="!editForm.controls.rating.valid && (editForm.controls.rating.dirty || submitAttempt)">
+        </rating>
+        <ion-item *ngIf="!editForm.controls.rating.valid && (editForm.controls.rating.dirty || submitAttempt)">
+          <span class="invalid-message">{{ 'climb.field.error.rating' | translate }}</span>
+        </ion-item>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'climb.field.comment' | translate}}</ion-label>
+        <ion-input formControlName="comment" [class.invalid]="!editForm.controls.comment.valid && (editForm.controls.comment.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+
+    </ion-list>
+  </form>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <button color="primary" block ion-button full (click)="save()">
+            {{ 'controls.save' | translate }}
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button color="secondary" ion-button full (click)="cancel()">
+            {{ 'controls.cancel' | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

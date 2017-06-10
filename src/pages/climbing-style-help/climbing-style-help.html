@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ 'climb.field.style.help.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div padding>
+    <h3>{{ 'climb.field.style.onsight' | translate }}</h3>
+    <div [innerHtml]="'climb.field.style.help.onsight' | translate"></div>
+  </div>
+  <div padding>
+    <h3>{{ 'climb.field.style.redpoint' | translate }}</h3>
+    <div [innerHtml]="'climb.field.style.help.redpoint' | translate"></div>
+  </div>
+  <div padding>
+    <h3>{{ 'climb.field.style.attempt' | translate }}</h3>
+    <div [innerHtml]="'climb.field.style.help.attempt' | translate"></div>
+  </div>
+</ion-content>
+
+<ion-footer>
+    <button color="secondary" ion-button full (click)="ok()">
+      {{ 'controls.ok' | translate }}
+    </button>
+</ion-footer>

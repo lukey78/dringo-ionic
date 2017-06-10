@@ -61,6 +61,27 @@ export class RatingsProvider {
   getItems(): Array<Rating> {
     return this.items;
   }
+  
+  getItemsForRealRating(routeRatingId: number): Array<Rating> {
+    let filteredItems: Rating[] = [];
+    let minId = routeRatingId - 2;
+    let maxId = routeRatingId + 2;
+
+    if (minId < 1) {
+      minId = 1;
+    }
+    if (maxId > 30) {
+      maxId = 30;
+    }
+
+    this.items.forEach(function(r) {
+      if (r.id >= minId && r.id <= maxId) {
+        filteredItems.push(r);
+      }
+    });
+
+    return filteredItems;
+  }
 
   getItem(key: number): Rating {
     return this.items[key-1];

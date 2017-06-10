@@ -38,6 +38,7 @@ import {ClimbModule} from "../pages/climb/climb.module";
 import {ClimbPage} from "../pages/climb/climb";
 import {StatsModule} from "../pages/stats/stats.module";
 import {StatsPage} from "../pages/stats/stats";
+import {ClimbsProvider} from "../providers/climbs";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -98,6 +99,7 @@ export const firebaseConfig = {
     LocationsProvider,
     RoutesProvider,
     RatingsProvider,
+    ClimbsProvider,
     UserProvider,
     GooglePlus,
     Facebook,

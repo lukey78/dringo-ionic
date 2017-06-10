@@ -9,59 +9,37 @@ import { AuthService } from "./auth-service";
 import { AfoListObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 import {RatingsProvider} from "./ratings";
 import {Subject} from "rxjs/Subject";
+import {Climb} from "../models/climb";
 
 
 @Injectable()
-export class RoutesProvider {
+export class ClimbsProvider {
 
   items: AfoListObservable<any>;
   locationId: string;
-  locationSubject: Subject<string>;
+  climbsSubject: Subject<string>;
 
   constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService, private ratingsProvider: RatingsProvider) {
-    this.locationSubject = new Subject();
+    this.climbsSubject = new Subject();
 
-    this.items = this.db.list('/routes', {
+    this.items = this.db.list('/climbs', {
       query: {
         orderByChild: 'locationId',
-        equalTo: this.locationSubject
+        equalTo: this.climbsSubject
       }
     });
   }
 
   getItems(locationId: string): Observable<Route[]> {
-    this.locationSubject.next(locationId);
-    return this.items.map(Route.fromJsonList);
-  }
-
-  getItemsFilteredByName(locationId: string, searchTerm: string): Observable<Route[]> {
-    if (searchTerm.length > 0) {
-      this.locationSubject.next(locationId);
-      return this.items.map(data => data.filter(item => item.nameCanonical.indexOf(searchTerm.toLowerCase()) > -1)).map(Route.fromJsonList);
-    } else {
-      return this.getItems(locationId);
-    }
-  }
-
-  /** there's no simple way to just query the count, so we query all and return the count... pff
-  getItemCount(locationId: string): Observable<number> {
-    /**
     this.climbsSubject.next(locationId);
-
-    return Observable.create(observer => {
-      this.items.subscribe(data => {
-        observer.next(data.length);
-        observer.complete();
-      });
-    });
-  }
-  */
-
-  getItem(key: string): Observable<Route> {
-    return this.db.object('/routes/' + key).map(Route.fromJson);
+    return this.items.map(Climb.fromJsonList);
   }
 
-  addItem(item: Route): string {
+  getItem(key: string): Observable<Climb> {
+    return this.db.object('/climbs/' + key).map(Climb.fromJson);
+  }
+
+  addItem(item: Climb): string {
     item.createdById = this.auth.getUserId();
     item.createdByName = this.auth.getUserName();
     return this.items.push(item).key;
@@ -78,10 +56,27 @@ export class RoutesProvider {
   deleteForLocation(locationKey: string) {
     let me = this;
 
-    let itemsToDelete = this.db.list('/routes', {
+    let itemsToDelete = this.db.list('/climbs', {
       query: {
         orderByChild: 'locationId',
         equalTo: locationKey
+      }
+    });
+
+    itemsToDelete.first().subscribe(function(res) {
+      res.forEach(route => {
+        me.db.object(route.$key).remove();
+      });
+    });
+  }
+
+  deleteForRoute(routeKey: string) {
+    let me = this;
+
+    let itemsToDelete = this.db.list('/climbs', {
+      query: {
+        orderByChild: 'routeId',
+        equalTo: routeKey
       }
     });
 

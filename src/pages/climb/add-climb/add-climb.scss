@@ -1,0 +1,31 @@
+.ios, .md {
+
+  page-add-climb {
+
+    p {
+      font-size: 0.8em;
+    }
+
+    .invalid-message {
+      font-size: 0.8em;
+      white-space: normal !important;
+      color: color($colors, danger);
+    }
+
+    .invalid-border {
+      border-color: color($colors, danger);
+    }
+
+    .invalid {
+      background-color: color($colors, danger);
+    }
+
+    ul {
+      padding: 0px;
+      margin: 5px;
+      text-align: center;
+    }
+
+  }
+
+}

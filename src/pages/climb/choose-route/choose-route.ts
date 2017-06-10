@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, ModalController, NavParams, ViewController} from 'ionic-angular';
 
 
-import { RouteDetailPage } from './route-detail/route-detail';
 import { Observable } from "rxjs/Observable";
 import {Route} from "../../../models/route";
 import {RoutesProvider} from "../../../providers/routes";

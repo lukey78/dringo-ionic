@@ -37,7 +37,7 @@ export class Route {
     }
 
     static fromJson({$key, locationId, name, ratingId, sector, builder, active, createdById, createdByName}):Route {
-        return new Route($key, locationId, name, ratingId, sector, builder, active, createdById, createdByName);
+        return new Route($key, locationId, name, parseInt(ratingId), sector, builder, active, createdById, createdByName);
     }
 
     private updateCanonicals() {
