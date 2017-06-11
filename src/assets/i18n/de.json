@@ -122,7 +122,7 @@
             "error": {
                 "style": "Bitte wähle aus, wie du die Route geklettert hast.",
                 "blocks": "Bitte gib an, wie viele Blocks du benötigt hast.",
-                "rating": "Bitte gib an, wie dir die Route gefallen hat."
+                "myRating": "Bitte gib an, wie dir die Route gefallen hat."
             },
             "blocks": "Anzahl Blocks",
             "blockSingular": "Block",

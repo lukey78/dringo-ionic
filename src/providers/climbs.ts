@@ -40,8 +40,7 @@ export class ClimbsProvider {
   }
 
   addItem(item: Climb): string {
-    item.createdById = this.auth.getUserId();
-    item.createdByName = this.auth.getUserName();
+    item.setUser(this.auth.getUserId(), this.auth.getUserName());
     return this.items.push(item).key;
   }
 

@@ -38,22 +38,21 @@ export class Climb {
       id: string,
       date: string,
       realRatingId: number,
-      style: number,
-      blocks: number,
+      style: any,
+      blocks: any,
       myRating: number,
       comment: string
     ) {
         this.id = id;
         this.date = date;
         this.realRatingId = realRatingId;
-        this.style = style;
-        this.blocks = blocks;
+        this.style = parseInt(style);
+        this.blocks = parseInt(blocks);
         this.myRating = myRating;
         this.comment = comment;
-        this.updateCanonicals();
     }
 
-    static fromForm(data, location: Location, route: Route, user: User) {
+    static fromForm(data, location: Location, route: Route) {
         let climb = new Climb(null, data.datetime, data.realRatingId, data.style, data.blocks, data.myRating, data.comment);
 
         climb.locationId = location.id;
@@ -64,7 +63,15 @@ export class Climb {
         climb.routeName = route.name;
         climb.routeRatingId = route.ratingId;
 
+        climb.updateCanonicals();
+
         return climb;
+    }
+
+    public setUser(userId, userName) {
+        this.createdById = userId;
+        this.createdByName = userName;
+        this.updateCanonicals();
     }
 
     public updateFromForm(data) {

@@ -21,13 +21,13 @@
 
       <ion-item>
         <ion-segment formControlName="style" color="secondary" [class.invalidBorder]="!editForm.controls.style.valid && (editForm.controls.style.dirty || submitAttempt)">
-          <ion-segment-button value="1">
+          <ion-segment-button value=1>
             <ion-icon name="eye"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="2" id="default-style">
+          <ion-segment-button value=2 id="default-style">
             <ion-icon name="checkmark-circle"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="3">
+          <ion-segment-button value=3>
             <ion-icon name="construct"></ion-icon>
           </ion-segment-button>
         </ion-segment>
@@ -47,22 +47,22 @@
         <ion-item *ngIf="editForm.controls.style.value == 3">
           {{ 'climb.field.style.attempt' | translate }}
           <ion-segment formControlName="blocks" color="secondary">
-            <ion-segment-button value="1">
+            <ion-segment-button value=1>
               1
             </ion-segment-button>
-            <ion-segment-button value="2">
+            <ion-segment-button value=2>
               2
             </ion-segment-button>
-            <ion-segment-button value="3">
+            <ion-segment-button value=3>
               3
             </ion-segment-button>
-            <ion-segment-button value="4">
+            <ion-segment-button value=4>
               4
             </ion-segment-button>
-            <ion-segment-button value="5">
+            <ion-segment-button value=5>
               &gt; 4
             </ion-segment-button>
-            <ion-segment-button value="99">
+            <ion-segment-button value=99>
               <ion-icon name="sad"></ion-icon>
             </ion-segment-button>
           </ion-segment>
@@ -88,10 +88,10 @@
       </ion-item>
 
       <ion-item>
-        <rating nullable="true" formControlName="rating" [class.invalid]="!editForm.controls.rating.valid && (editForm.controls.rating.dirty || submitAttempt)">
+        <rating nullable="true" formControlName="myRating" [class.invalid]="!editForm.controls.myRating.valid && (editForm.controls.myRating.dirty || submitAttempt)">
         </rating>
-        <ion-item *ngIf="!editForm.controls.rating.valid && (editForm.controls.rating.dirty || submitAttempt)">
-          <span class="invalid-message">{{ 'climb.field.error.rating' | translate }}</span>
+        <ion-item *ngIf="!editForm.controls.myRating.valid && (editForm.controls.myRating.dirty || submitAttempt)">
+          <span class="invalid-message">{{ 'climb.field.error.myRating' | translate }}</span>
         </ion-item>
       </ion-item>
 
