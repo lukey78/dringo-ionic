@@ -122,8 +122,6 @@ export class AuthService {
 
   // currently not used
   linkWithGoogle(): firebase.Promise<any> {
-    let me = this;
-
     return this.afAuth.auth.currentUser.linkWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(function(result) {
         console.log("linked successfully", result);

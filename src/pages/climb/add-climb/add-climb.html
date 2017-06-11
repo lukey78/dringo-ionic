@@ -67,7 +67,7 @@
             </ion-segment-button>
           </ion-segment>
 
-          <ion-item *ngIf="!editForm.valid && (editForm.controls.blocks.dirty || submitAttempt)">
+          <ion-item *ngIf="!editForm.controls.blocks.valid && (editForm.controls.blocks.dirty || submitAttempt)">
             <span class="invalid-message">{{ 'climb.field.error.blocks' | translate }}</span>
           </ion-item>
         </ion-item>

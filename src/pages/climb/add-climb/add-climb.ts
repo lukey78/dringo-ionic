@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {IonicPage, ViewController, NavParams, AlertController, ModalController} from 'ionic-angular';
 
 import { TranslateService } from "@ngx-translate/core";
@@ -41,9 +41,11 @@ export class AddClimbPage {
 
   validateBlocks(g: FormGroup): ValidationErrors {
     if (g.controls.style.value == ClimbingStyle.Attempt && g.controls.blocks.value == 0) {
-      return {
-        "blocks": false
-      };
+      g.controls.blocks.setErrors({
+        "noBlockValue": true
+      });
+    } else {
+      g.controls.blocks.setErrors(null);
     }
 
     return null;

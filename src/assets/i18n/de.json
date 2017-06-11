@@ -116,7 +116,7 @@
                     "title": "Begehungsstile",
                     "onsight": "Du hast die Route <b>beim ersten Mal</b> ohne Blocks durchstiegen. Wenn du die Route bereits einmal versucht hast oder schon eine Rotpunkt-Begehung eingetragen hast, kannst du diese Option nicht mehr auswählen.",
                     "redpoint": "Du hast die Route ohne Blocks durchstiegen. Davor kannst du sie beliebig oft versucht haben. Da man in Kletterhallen <i>eigentlich</i> nur Pinkpoint klettern kann (Exen sind bereits eingehängt), bieten wir nur diese Option an.",
-                    "attempt": "Du hast die Route nur mit Blocks oder gar nicht geschafft. Gib an, wie viele Blocks du benötigt hast."
+                    "attempt": "Du hast die Route nur mit Blocks oder gar nicht geschafft. Gib an, wie viele Blocks du benötigt hast oder wähle den traurigen Smily, wenn du nicht oben angekommen bist."
                 }
             },
             "error": {

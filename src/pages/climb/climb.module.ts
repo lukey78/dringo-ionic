@@ -6,7 +6,6 @@ import {ChooseLocationModule} from "./choose-location/choose-location.module";
 import {ChooseRouteModule} from "./choose-route/choose-route.module";
 import {AddClimbModule} from "./add-climb/add-climb.module";
 import {ClimbingStyleHelpModule} from "../climbing-style-help/climbing-style-help.module";
-import {Ionic2RatingModule} from "ionic2-rating";
 
 @NgModule({
   declarations: [
