@@ -126,10 +126,14 @@
             },
             "blocks": "Anzahl Blocks",
             "blockSingular": "Block",
-            "blockPlurals": "Blocks",
+            "blockPlural": "Blocks",
             "myRatingHeader": "Meine Bewertung",
             "myRating": "Bewertung",
             "comment": "Kommentar"
+        },
+        "viewClimbs": {
+            "action": "Begehungen anzeigen",
+            "title": "Begehungen"
         }
     },
     "stats": {

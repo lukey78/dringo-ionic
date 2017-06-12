@@ -17,21 +17,30 @@ export class ClimbsProvider {
 
   items: AfoListObservable<any>;
   locationId: string;
+  orderSubject: Subject<string>;
   climbsSubject: Subject<string>;
 
   constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService, private ratingsProvider: RatingsProvider) {
     this.climbsSubject = new Subject();
+    this.orderSubject = new Subject();
 
     this.items = this.db.list('/climbs', {
       query: {
-        orderByChild: 'locationId',
+        orderByChild: this.orderSubject,
         equalTo: this.climbsSubject
       }
     });
   }
 
-  getItems(locationId: string): Observable<Route[]> {
+  getItems(locationId: string): Observable<Climb[]> {
     this.climbsSubject.next(locationId);
+    return this.items.map(Climb.fromJsonList);
+  }
+
+  getItemsFilteredByUserAndRoute(userId: string, routeId: string) {
+    this.orderSubject.next('user_route');
+    this.climbsSubject.next(userId + '_' + routeId);
+
     return this.items.map(Climb.fromJsonList);
   }
 

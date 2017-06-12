@@ -1,0 +1,20 @@
+page-view-climbs {
+
+  .onsight {
+    background-color: color($colors, onsight);
+  }
+
+  .redpoint {
+    background-color: color($colors, redpoint);
+  }
+
+  .attempt {
+    background-color: color($colors, attempt);
+  }
+
+  .comment {
+    font-size: 0.8em;
+    white-space: normal;
+  }
+
+}

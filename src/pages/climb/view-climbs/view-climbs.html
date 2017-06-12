@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>{{ 'climb.viewClimbs.title' | translate }} ({{ (climbs | async)?.length }})</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let climb of climbs | async" (click)="edit(climb)" [ngClass]="climb.style == 1 ? 'onsight' : climb.style == 2 ? 'redpoint' : 'attempt'">
+
+      <ion-icon item-left *ngIf="climb.style == 1" name="eye"></ion-icon>
+      <ion-icon item-left *ngIf="climb.style == 2" name="checkmark-circle"></ion-icon>
+      <div item-left>
+        <ion-icon *ngIf="climb.style == 3" name="construct"></ion-icon>
+
+        <span *ngIf="climb.style == 3 && climb.blocks <= 4">{{ climb.blocks }}</span>
+        <span *ngIf="climb.style == 3 && climb.blocks == 5">> 4</span>
+        <span *ngIf="climb.style == 3 && climb.blocks == 99">
+          <ion-icon name="sad"></ion-icon>
+        </span>
+      </div>
+
+      <div>
+        {{ climb.getLocalDate() }}
+      </div>
+
+      <div class="comment">
+        {{ climb.comment }}
+      </div>
+
+      <ion-badge color="primary" item-right>{{ ratingsProvider.getItem(climb.realRatingId).french }}</ion-badge>
+
+    </button>
+  </ion-list>
+
+</ion-content>

@@ -1,6 +1,6 @@
 import {Route} from "./route";
 import {Location} from "./location";
-import {User} from "./user";
+import * as moment from 'moment';
 
 export enum ClimbingStyle {
     Onsight = 1,
@@ -27,6 +27,7 @@ export class Climb {
     public createdByName: string;
 
     private user_date: string;
+    private user_route: string;
     private user_location_date: string;
     private user_location_route: string;
     private user_rating: string;
@@ -44,7 +45,7 @@ export class Climb {
       comment: string
     ) {
         this.id = id;
-        this.date = date;
+        this.date = moment(date).format('YYYY-MM-DD');
         this.realRatingId = realRatingId;
         this.style = parseInt(style);
         this.blocks = parseInt(blocks);
@@ -78,7 +79,7 @@ export class Climb {
         this.updateCanonicals();
     }
 
-    static fromJsonList(array): Route[] {
+    static fromJsonList(array): Climb[] {
         return array.map(Climb.fromJson);
     }
 
@@ -102,11 +103,16 @@ export class Climb {
     private updateCanonicals() {
         this.user_location_date = this.createdById + '_' + this.locationId + '_' + this.date;
         this.user_date = this.createdById + '_' + this.date;
+        this.user_route = this.createdById + '_' + this.routeId;
         this.user_location_rating = this.createdById + '_' + this.locationId + '_' + this.routeRatingId;
         this.user_location_route = this.createdById + '_' + this.locationId + '_' + this.routeId;
         this.user_location_style = this.createdById + '_' + this.locationId + '_' + this.style;
         this.user_rating = this.createdById + '_' + this.routeRatingId;
         this.user_style_rating = this.createdById + '_' + this.style + '_' + this.routeRatingId;
+    }
+    
+    public getLocalDate() {
+        return moment(this.date).format('DD.MM.YYYY')
     }
 
 }

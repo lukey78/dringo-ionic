@@ -29,11 +29,13 @@ export class HomePage {
 
   openProfile() {
     //this.togglePulse();
-    let editModal = this.modalCtrl.create(ProfilePage);
-    editModal.present();
-    editModal.onDidDismiss(() => {
-      this.updateUser();
-    });
+    if (this.user) {
+      let editModal = this.modalCtrl.create(ProfilePage);
+      editModal.present();
+      editModal.onDidDismiss(() => {
+        this.updateUser();
+      });
+    }
   }
 
 /*

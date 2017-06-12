@@ -12,6 +12,7 @@ import {Route} from "../../models/route";
 import {Rating} from "../../models/rating";
 import {RatingsProvider} from "../../providers/ratings";
 import {AddClimbPage} from "./add-climb/add-climb";
+import {ViewClimbs} from "./view-climbs/view-climbs";
 
 @IonicPage()
 @Component({
@@ -79,7 +80,14 @@ export class ClimbPage {
       if (data && 'id' in data) {
       }
     });
+  }
 
+  viewClimbs() {
+    this.navCtrl.push(ViewClimbs, {
+      "user": this.currentUser,
+      "route": this.currentRoute,
+      "filter": "user_route"
+    });
   }
 
 }

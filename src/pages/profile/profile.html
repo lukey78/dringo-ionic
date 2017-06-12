@@ -10,18 +10,18 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img class="avatar" src="{{ user.imageUrl !== null ? user.imageUrl : 'assets/images/icons/anonymous.png' }}" />
+        <img class="avatar" src="{{ user?.imageUrl !== null ? user?.imageUrl : 'assets/images/icons/anonymous.png' }}" />
       </ion-col>
       <ion-col col-8>
         <div class="username">
-          {{ user.name ? user.name : "Anonymous"}}
+          {{ user?.name ? user.name : "Anonymous"}}
         </div>
-        <button [style.display]="user.isAnonymous() === true ? 'none' : 'inline'" ion-button small (click)="logout()">{{ 'profile.logout' | translate }}</button>
+        <button [style.display]="user?.isAnonymous() === true ? 'none' : 'inline'" ion-button small (click)="logout()">{{ 'profile.logout' | translate }}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <div [style.display]="user.isAnonymous() === true ? 'inline' : 'none'">
+  <div [style.display]="user?.isAnonymous() === true ? 'inline' : 'none'">
     <div class="anonymousInfo">
       {{ 'profile.anonymous' | translate }}
     </div>
