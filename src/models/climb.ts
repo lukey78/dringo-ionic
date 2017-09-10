@@ -80,11 +80,15 @@ export class Climb {
     }
 
     static fromJsonList(array): Climb[] {
-        return array.map(Climb.fromJson);
+      array.sort(function(a, b) {
+        return moment(a.date) < moment(b.date);
+      });
+
+      return array.map(Climb.fromJson);
     }
 
-    static fromJson({$key, locationId, locationName, locationIndoor, routeId, routeName, routeRatingId, datetime, realRatingId, style, blocks, myRating, comment, createdById, createdByName}):Climb {
-        let climb = new Climb($key, datetime, realRatingId, style, blocks, myRating, comment);
+    static fromJson({$key, locationId, locationName, locationIndoor, routeId, routeName, routeRatingId, date, realRatingId, style, blocks, myRating, comment, createdById, createdByName}):Climb {
+        let climb = new Climb($key, date, realRatingId, style, blocks, myRating, comment);
 
         climb.locationId = locationId;
         climb.locationName = locationName;

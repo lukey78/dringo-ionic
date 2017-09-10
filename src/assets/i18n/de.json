@@ -133,7 +133,10 @@
         },
         "viewClimbs": {
             "action": "Begehungen anzeigen",
-            "title": "Begehungen"
+            "title": "Begehungen",
+            "count": "Begehungen",
+            "best": "Beste",
+            "last": "Letzte"
         }
     },
     "stats": {

@@ -33,11 +33,6 @@ export class RoutesProvider {
   getItems(locationId: string): Observable<Route[]> {
     this.locationSubject.next(locationId);
     return this.items.map(Route.fromJsonList).map((routes) => {
-      routes.forEach(route => {
-        let climbs = this.climbsProvider.getItemsFilteredByUserAndRoute(this.auth.getUserId(), route.id).subscribe(climbs => {
-          console.log("got climb", route, climbs);
-        });
-      });
       return routes;
     });
   }

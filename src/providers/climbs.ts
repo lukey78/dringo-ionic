@@ -37,7 +37,7 @@ export class ClimbsProvider {
     return this.items.map(Climb.fromJsonList);
   }
 
-  getItemsFilteredByUserAndRoute(userId: string, routeId: string) {
+  getItemsFilteredByUserAndRoute(userId: string, routeId: string): Observable<Climb[]> {
     this.orderSubject.next('user_route');
     this.climbsSubject.next(userId + '_' + routeId);
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {TranslateService} from "@ngx-translate/core";
 import {ChooseLocationPage} from "./choose-location/choose-location";
@@ -13,6 +13,11 @@ import {Rating} from "../../models/rating";
 import {RatingsProvider} from "../../providers/ratings";
 import {ClimbsPage} from "../climbs/climbs";
 import {ClimbNewPage} from "../climbs/climb-new/climb-new";
+import {ClimbsProvider} from "../../providers/climbs";
+import {Climb} from "../../models/climb";
+
+import * as moment from 'moment';
+
 
 @IonicPage()
 @Component({
@@ -25,8 +30,11 @@ export class ClimbingPage {
   private currentRoute: Route;
   private rating: Rating;
   private currentUser: User;
+  private currentRouteClimbCount: number;
+  private lastClimb: Climb;
+  private bestClimb: Climb;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private translator: TranslateService, private auth: AuthService, private userProvider: UserProvider, private locationsProvider: LocationsProvider, private ratingsProvider: RatingsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private translator: TranslateService, private auth: AuthService, private userProvider: UserProvider, private locationsProvider: LocationsProvider, private ratingsProvider: RatingsProvider, private climbsProvider: ClimbsProvider) {
     auth.getCurrentUser().subscribe(user => {
       this.currentUser = user;
       let currentLocationId = this.currentUser.getCurrentLocation();
@@ -58,13 +66,27 @@ export class ClimbingPage {
   }
 
   chooseRoute() {
-    let chooseModal = this.modalCtrl.create(ChooseRoutePage, { "location": this.currentLocation });
+    let chooseModal = this.modalCtrl.create(ChooseRoutePage, {"location": this.currentLocation});
     chooseModal.present();
 
     chooseModal.onDidDismiss(chosenRoute => {
       if (chosenRoute) {
+        let me = this;
         this.currentRoute = chosenRoute;
         this.rating = this.ratingsProvider.getItem(this.currentRoute.ratingId);
+
+        let climbs = this.climbsProvider.getItemsFilteredByUserAndRoute(this.currentUser.id,  this.currentRoute.id);
+        climbs.subscribe(climbs => {
+          me.currentRouteClimbCount = climbs.length;
+          me.lastClimb = climbs[0];
+          me.bestClimb = me.lastClimb;
+
+          climbs.forEach(function(climb) {
+            if (climb.style <= me.bestClimb.style && climb.blocks <= me.bestClimb.blocks) {
+              me.bestClimb = climb;
+            }
+          });
+        });
       }
     });
   }

@@ -34,14 +34,53 @@
         {{ 'route.field.rating' | translate }}:
         {{ rating?.french }} | {{ rating?.uiaa}} | {{ rating?.usa }}
       </ion-item>
+
+      <ion-item (tap)="viewClimbs()">
+        {{ 'climb.viewClimbs.title' | translate }} <ion-badge color="primary" item-right>{{ currentRouteClimbCount }}</ion-badge>
+      </ion-item>
+
+      <ion-item *ngIf="currentRouteClimbCount > 0">
+        <div>
+          {{ 'climb.viewClimbs.last' | translate }}: {{ lastClimb?.getLocalDate() }}
+        </div>
+
+        <ion-icon item-right *ngIf="lastClimb?.style == 1" name="eye"></ion-icon>
+        <ion-icon item-right *ngIf="lastClimb?.style == 2" name="checkmark-circle"></ion-icon>
+        <div item-right>
+          <ion-icon *ngIf="lastClimb?.style == 3" name="construct"></ion-icon>
+
+          <span *ngIf="lastClimb?.style == 3 && lastClimb?.blocks <= 4">{{ lastClimb.blocks }}</span>
+          <span *ngIf="lastClimb?.style == 3 && lastClimb?.blocks == 5">> 4</span>
+          <span *ngIf="lastClimb?.style == 3 && lastClimb?.blocks == 99">
+          <ion-icon name="sad"></ion-icon>
+        </span>
+        </div>
+
+      </ion-item>
+
+      <ion-item *ngIf="currentRouteClimbCount > 0">
+        <div>
+          {{ 'climb.viewClimbs.best' | translate }}: {{ bestClimb?.getLocalDate() }}
+        </div>
+
+        <ion-icon item-right *ngIf="bestClimb?.style == 1" name="eye"></ion-icon>
+        <ion-icon item-right *ngIf="bestClimb?.style == 2" name="checkmark-circle"></ion-icon>
+        <div item-right>
+          <ion-icon *ngIf="bestClimb?.style == 3" name="construct"></ion-icon>
+
+          <span *ngIf="bestClimb?.style == 3 && bestClimb?.blocks <= 4">{{ bestClimb.blocks }}</span>
+          <span *ngIf="bestClimb?.style == 3 && bestClimb?.blocks == 5">> 4</span>
+          <span *ngIf="bestClimb?.style == 3 && bestClimb?.blocks == 99">
+          <ion-icon name="sad"></ion-icon>
+        </span>
+        </div>
+
+      </ion-item>
+
     </ion-list>
 
     <button ion-button block full (click)="addClimb()">
       {{ 'climb.addClimb' | translate }}
-    </button>
-
-    <button ion-button block full (click)="viewClimbs()">
-      {{ 'climb.viewClimbs.action' | translate }}
     </button>
 
   </div>
