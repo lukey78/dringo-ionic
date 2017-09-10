@@ -1,3 +1,4 @@
+import {Climb} from "./climb";
 export class Route {
 
     public nameCanonical: string;
@@ -44,5 +45,9 @@ export class Route {
         if (this.name) {
             this.nameCanonical = this.name.toLocaleLowerCase();
         }
+    }
+    
+    public setClimb(climb: Climb[]) {
+        console.log(climb);
     }
 }

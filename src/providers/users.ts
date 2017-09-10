@@ -22,16 +22,21 @@ export class UserProvider {
   updateOrCreateItemOnLogin(fbUser: firebase.User) {
     let key = Md5.hashStr(fbUser.email);
 
-    this.db.object('/users/' + key).subscribe( obj => {
+    this.db.object('/users/' + key).next( obj => {
       if (obj.$exists()) {
         //console.log("item exists, updating");
+
         let existingUser = User.fromJson(obj);
-        existingUser.updateAfterLogin(fbUser);
-        //console.log(existingUser);
-        this.db.object('/users/' + key).update(existingUser);
+        if (existingUser) {
+          existingUser.updateAfterLogin(fbUser);
+          this.db.object('/users/' + key).update(existingUser);
+        }
       } else {
         //console.log("item does not exist, creating");
-        this.db.object('/users/' + key).set(User.fromLoginData(fbUser));
+        let userObj = User.fromLoginData(fbUser);
+        if (userObj) {
+          this.db.object('/users/' + key).set(userObj);
+        }
       }
     });
   }

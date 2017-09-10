@@ -40,7 +40,10 @@ export class User {
     }
 
     static fromJson({$key, name, email, city, country, language, imageUrl, currentLocation}):User {
-        return new User(Md5.hashStr(email).toString(), name, email, city ? city : "", country, language, imageUrl, currentLocation ? currentLocation : null);
+        if (email && email.length > 0) {
+            return new User(Md5.hashStr(email).toString(), name, email, city ? city : "", country, language, imageUrl, currentLocation ? currentLocation : null);
+        }
+        return null;
     }
     
     public updateCurrentLocation(loc: Location) {

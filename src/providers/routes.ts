@@ -9,6 +9,7 @@ import { AuthService } from "./auth-service";
 import { AfoListObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 import {RatingsProvider} from "./ratings";
 import {Subject} from "rxjs/Subject";
+import {ClimbsProvider} from "./climbs";
 
 
 @Injectable()
@@ -18,7 +19,7 @@ export class RoutesProvider {
   locationId: string;
   locationSubject: Subject<string>;
 
-  constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService, private ratingsProvider: RatingsProvider) {
+  constructor(public http: Http, public db: AngularFireOfflineDatabase, private auth: AuthService, private climbsProvider: ClimbsProvider) {
     this.locationSubject = new Subject();
 
     this.items = this.db.list('/routes', {
@@ -31,7 +32,14 @@ export class RoutesProvider {
 
   getItems(locationId: string): Observable<Route[]> {
     this.locationSubject.next(locationId);
-    return this.items.map(Route.fromJsonList);
+    return this.items.map(Route.fromJsonList).map((routes) => {
+      routes.forEach(route => {
+        let climbs = this.climbsProvider.getItemsFilteredByUserAndRoute(this.auth.getUserId(), route.id).subscribe(climbs => {
+          console.log("got climb", route, climbs);
+        });
+      });
+      return routes;
+    });
   }
 
   getItemsFilteredByName(locationId: string, searchTerm: string): Observable<Route[]> {
