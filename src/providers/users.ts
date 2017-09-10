@@ -22,7 +22,7 @@ export class UserProvider {
   updateOrCreateItemOnLogin(fbUser: firebase.User) {
     let key = Md5.hashStr(fbUser.email);
 
-    this.db.object('/users/' + key).next( obj => {
+    this.db.object('/users/' + key).subscribe( obj => {
       if (obj.$exists()) {
         //console.log("item exists, updating");
 
