@@ -1,17 +1,16 @@
-import {Component, Pipe} from '@angular/core';
+import { Component } from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import {Climb} from "../../../models/climb";
+import {RatingsProvider} from "../../providers/ratings";
 import {Observable} from "rxjs/Observable";
-import {ClimbsProvider} from "../../../providers/climbs";
-import {RatingsProvider} from "../../../providers/ratings";
-
+import {Climb} from "../../models/climb";
+import {ClimbsProvider} from "../../providers/climbs";
 
 @IonicPage()
 @Component({
-  selector: 'page-view-climbs',
-  templateUrl: 'view-climbs.html',
+  selector: 'page-climbs',
+  templateUrl: 'climbs.html',
 })
-export class ViewClimbs {
+export class ClimbsPage {
 
   climbs: Observable<Climb[]>;
 
@@ -31,11 +30,5 @@ export class ViewClimbs {
     let val = ev.target.value;
     //this.climbs = this.climbsProvider.getItemsFilteredByName(this.location.id, val);
   }
-
-  /**
-  edit(route: Route) {
-    this.navCtrl.push(RouteDetailPage, { "id": route.id, "location": this.location })
-  }
-   */
 
 }

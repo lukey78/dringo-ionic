@@ -12,7 +12,7 @@ import {Route} from "../../models/route";
 import {Rating} from "../../models/rating";
 import {RatingsProvider} from "../../providers/ratings";
 import {AddClimbPage} from "./add-climb/add-climb";
-import {ViewClimbs} from "./view-climbs/view-climbs";
+import {ClimbsPage} from "../climbs/climbs";
 
 @IonicPage()
 @Component({
@@ -83,7 +83,7 @@ export class ClimbingPage {
   }
 
   viewClimbs() {
-    this.navCtrl.push(ViewClimbs, {
+    this.navCtrl.push(ClimbsPage, {
       "user": this.currentUser,
       "route": this.currentRoute,
       "filter": "user_route"
