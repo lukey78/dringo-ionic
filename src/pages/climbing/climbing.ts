@@ -16,10 +16,10 @@ import {ViewClimbs} from "./view-climbs/view-climbs";
 
 @IonicPage()
 @Component({
-  selector: 'page-climb',
-  templateUrl: 'climb.html',
+  selector: 'page-climbing',
+  templateUrl: 'climbing.html',
 })
-export class ClimbPage {
+export class ClimbingPage {
 
   private currentLocation: Location;
   private currentRoute: Route;

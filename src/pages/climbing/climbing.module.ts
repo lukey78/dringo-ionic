@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import {ClimbPage} from "./climb";
+import {ClimbingPage} from "./climbing";
 import {ChooseLocationModule} from "./choose-location/choose-location.module";
 import {ChooseRouteModule} from "./choose-route/choose-route.module";
 import {AddClimbModule} from "./add-climb/add-climb.module";
@@ -10,7 +10,7 @@ import {ViewClimbsModule} from "./view-climbs/view-climbs.module";
 
 @NgModule({
   declarations: [
-    ClimbPage,
+    ClimbingPage,
   ],
   imports: [
     ChooseLocationModule,
@@ -18,11 +18,11 @@ import {ViewClimbsModule} from "./view-climbs/view-climbs.module";
     ClimbingStyleHelpModule,
     AddClimbModule,
     ViewClimbsModule,
-    IonicPageModule.forChild(ClimbPage),
+    IonicPageModule.forChild(ClimbingPage),
     TranslateModule.forChild()
   ],
   exports: [
-    ClimbPage
+    ClimbingPage
   ]
 })
-export class ClimbModule {}
+export class ClimbingModule {}

@@ -34,8 +34,8 @@ import {GooglePlus} from "@ionic-native/google-plus";
 import {RoutesProvider} from "../providers/routes";
 import {RatingsProvider} from "../providers/ratings";
 import {Facebook} from "@ionic-native/facebook";
-import {ClimbModule} from "../pages/climb/climb.module";
-import {ClimbPage} from "../pages/climb/climb";
+import {ClimbingModule} from "../pages/climbing/climbing.module";
+import {ClimbingPage} from "../pages/climbing/climbing";
 import {StatsModule} from "../pages/stats/stats.module";
 import {StatsPage} from "../pages/stats/stats";
 import {ClimbsProvider} from "../providers/climbs";
@@ -78,7 +78,7 @@ export const firebaseConfig = {
 
     LoginModule,
     LocationsModule,
-    ClimbModule,
+    ClimbingModule,
     StatsModule,
     HomeModule
   ],
@@ -88,7 +88,7 @@ export const firebaseConfig = {
     LoginPage,
     HomePage,
     LocationsPage,
-    ClimbPage,
+    ClimbingPage,
     StatsPage,
     TabsPage
   ],
