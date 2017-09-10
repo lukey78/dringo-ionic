@@ -13,10 +13,10 @@ import {ClimbsProvider} from "../../../providers/climbs";
 
 @IonicPage()
 @Component({
-  selector: 'page-add-climb',
-  templateUrl: 'add-climb.html',
+  selector: 'page-climb-new',
+  templateUrl: 'climb-new.html',
 })
-export class AddClimbPage {
+export class ClimbNewPage {
 
   route: Route;
   location: Location;

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import {AddClimbModule} from "./add-climb/add-climb.module";
 import {ClimbingStyleHelpModule} from "../climbing-style-help/climbing-style-help.module";
 import {ClimbsPage} from "./climbs";
+import {ClimbNewModule} from "./climb-new/climb-new.module";
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import {ClimbsPage} from "./climbs";
   ],
   imports: [
     ClimbingStyleHelpModule,
-    AddClimbModule,
+    ClimbNewModule,
     IonicPageModule.forChild(ClimbsPage),
     TranslateModule.forChild()
   ],

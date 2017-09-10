@@ -11,8 +11,8 @@ import {ChooseRoutePage} from "./choose-route/choose-route";
 import {Route} from "../../models/route";
 import {Rating} from "../../models/rating";
 import {RatingsProvider} from "../../providers/ratings";
-import {AddClimbPage} from "./add-climb/add-climb";
 import {ClimbsPage} from "../climbs/climbs";
+import {ClimbNewPage} from "../climbs/climb-new/climb-new";
 
 @IonicPage()
 @Component({
@@ -70,7 +70,7 @@ export class ClimbingPage {
   }
 
   addClimb() {
-    let addModal = this.modalCtrl.create(AddClimbPage, {
+    let addModal = this.modalCtrl.create(ClimbNewPage, {
       "route": this.currentRoute,
       "location": this.currentLocation
     });

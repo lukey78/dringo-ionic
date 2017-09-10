@@ -4,7 +4,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import {ClimbingPage} from "./climbing";
 import {ChooseLocationModule} from "./choose-location/choose-location.module";
 import {ChooseRouteModule} from "./choose-route/choose-route.module";
-import {AddClimbModule} from "./add-climb/add-climb.module";
 import {ClimbingStyleHelpModule} from "../climbing-style-help/climbing-style-help.module";
 import {ClimbsModule} from "../climbs/climbs.module";
 
@@ -17,7 +16,6 @@ import {ClimbsModule} from "../climbs/climbs.module";
     ChooseRouteModule,
     ClimbingStyleHelpModule,
     ClimbsModule,
-    AddClimbModule,
     IonicPageModule.forChild(ClimbingPage),
     TranslateModule.forChild()
   ],
