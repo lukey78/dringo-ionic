@@ -44,7 +44,7 @@
     "firebase": "^4.3.0",
     "flag-icon-css": "^2.8.0",
     "install": "^0.9.6",
-    "ionic-angular": "3.5.0",
+    "ionic-angular": "^3.6.1",
     "ionic-plugin-keyboard": "~2.2.1",
     "ionic2-rating": "^1.2.2",
     "ionicons": "3.0.0",
@@ -57,7 +57,7 @@
     "zone.js": "0.8.12"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "1.3.7",
+    "@ionic/app-scripts": "^2.1.4",
     "typescript": "2.3.4"
   },
   "cordovaPlugins": [
