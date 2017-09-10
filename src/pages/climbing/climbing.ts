@@ -94,7 +94,8 @@ export class ClimbingPage {
   addClimb() {
     let addModal = this.modalCtrl.create(ClimbNewPage, {
       "route": this.currentRoute,
-      "location": this.currentLocation
+      "location": this.currentLocation,
+      "lastClimb": this.lastClimb
     });
     addModal.present();
 

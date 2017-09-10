@@ -22,6 +22,8 @@ export class ClimbNewPage {
   location: Location;
   realRatings: Array<Rating>;
 
+  lastClimb: Climb;
+
   editForm: FormGroup;
   submitAttempt: boolean;
 
@@ -31,13 +33,23 @@ export class ClimbNewPage {
     this.location = navParams.get('location');
     this.realRatings = ratingsProvider.getItemsForRealRating(this.route.ratingId);
 
+    this.lastClimb = navParams.get('lastClimb');
+
     this.editForm = this.formBuilder.group({
       datetime: [new Date().toISOString(), Validators.compose([Validators.required])],
-      realRatingId: [this.route.ratingId, Validators.compose([Validators.required])],
+      realRatingId: [
+        this.lastClimb ? this.lastClimb.realRatingId : this.route.ratingId,
+        Validators.compose([Validators.required])
+      ],
       style: ['', Validators.compose([Validators.required])],
       blocks: [0, Validators.compose([Validators.required])],
-      comment: [''],
-      myRating: ['', Validators.compose([Validators.required, Validators.pattern('[1-5]')])]
+      comment: [
+        this.lastClimb ? this.lastClimb.comment : ''
+      ],
+      myRating: [
+        this.lastClimb ? this.lastClimb.myRating : '',
+        Validators.compose([Validators.required, Validators.pattern('[1-5]')])
+      ]
     }, {
       "validator": this.validateBlocks
     });

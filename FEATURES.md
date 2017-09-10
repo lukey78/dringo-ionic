@@ -57,7 +57,7 @@ Feature list
 ### todo
 
 - Ort suchen
-- Route anzeigen: Stats, Bewertung etc.
+- Route anzeigen: Stats, Bewertung, Begehungen, ...
 
 
 ## KLETTERN
@@ -69,13 +69,13 @@ Feature list
 + Begehung eintragen
 + Begehungen anzeigen
 + Route auswählen: Letzte Begehung Details anzeigen
++ Begehung eintragen: Rating updaten, nicht neu erfassen
 
 ### todo
 
 - On-Sight nicht mehr erlauben, wenn bereits Redpoint geklettert
 - Begehung bearbeiten
 - Begehung löschen 
-- Begehung eintragen: Rating updaten, nicht neu erfassen
 - Einzelne Begehung anzeigen
 - Route auswählen: Eigene bzw. alle Bewertungen anzeigen
 
